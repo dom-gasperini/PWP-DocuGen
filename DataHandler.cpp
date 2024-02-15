@@ -121,31 +121,93 @@ int DataHandler::ProcessData(QString filename) {
  * @return
  */
 int DataHandler::GenerateDocument(QString filename) {
-    // save file
-    QString documentName = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/" + filename;
+    // inits
+    QString documentName = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/" + filename + ".pdf";
     qDebug() << "new filename: " << documentName;
 
-    // open new file
-    QFile document(documentName);
+    // document content
+    QString html =
+        "<div align=right>"
+        "City, 11/11/2015"
+        "</div>"
+        "<div align=left>"
+        "Sender Name<br>"
+        "street 34/56A<br>"
+        "121-43 city"
+        "</div>"
+        "<h1 align=center>DOCUMENT TITLE</h1>"
+        "<p align=justify>"
+        "document content document content document content document content document content document content document content document content document content document content "
+        "document content document content document content document content document content document content document content document content document content document content "
+        "</p>"
+        "<div align=right>sincerly</div>";
 
-    if (document.open(QIODevice::ReadWrite | QIODevice::Text)) {
-        // open text stream
-        QTextStream documentData(&document);
+    QTextDocument document;
+    document.setHtml(html);
 
-        // write document
-        documentData << "test";
+    QPrinter printer(QPrinter::PrinterResolution);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setPageSize(QPageSize::A4);
+    printer.setOutputFileName(documentName);
+    printer.setPageMargins(QMarginsF(15, 15, 15, 15));
+
+    // header with return address
+
+    // pwp logo centered
+    // painter.drawImage(r, QImage(":/images/pwp-logo.png"));
+
+    // date underlined
 
 
+    // customer address underlined
+
+    // Thank you message
 
 
+    // We broke this down into ___ sections
+    // Sections
 
-    }
-    else {
-        qDebug() << "Failed to write or create/open new file!";
-        return 1;
-    }
+    /* Section Breakdown
+     * After going over measurements and calculating costs, this job comes out to $____ with supplies included.
+     *
+     * This job will take ___ - ___ days to complete with an average of __ painters per day on site.
+     *
+     * Services included within this estimate: (THIS IS STANDARD)
+     *  ● Floor Protection
+     *  ● Wall Hung Items Deinstallation (outlet covers, switch plates, etc.)
+     *  ● Patching (walls)
+     *  ● Sanding (by hand and with a Festool MIDI I Dust Extractor)
+     *  ● Dusting
+     *  ● Taping
+     *  ● Masking
+     *  ● Spot Priming (stains, drywall repairs, and dark spots)
+     *  ● Full Priming (upstairs bathroom)
+     *  ● Painting (2 coats)
+     *  ● Reassembling Wall Hung Items (outlet covers, switch plates, etc.)
+     *  ● Daily Jobsite cleanup (trash removal and tool organization)
+     *  ● Final Cleanup (sweeping, vacuum, mopping if needed)
+     *  ● Touch ups as needed
+     *
+     *
+     *  Expected Supplies needed for this job:
+     *  ● _ gallons of Sherwin Williams Duration paint (satin, walls)
+     *  ● _ gallons of Sherwin Williams ProMar 400 paint (flat, ceiling)
+     *  ● _ gallons of Sherwin Williams Cashmere paint (semi gloss, trim and door)
+     *  ● _ gallons of Sherwin Williams Multipurpose Primer (upstairs bathroom)
+     *  ● _ quart of Kilz Original oil primer (spot priming)
+     *  ● Misc. (Sandpaper, painters plastic, tape, etc.)
+     *
+     *
+     *  Specific Notes about this section:
+     *  ● This estimate is computed with 1 wall, 1 ceiling, and 1 trim & door color. Any additional colors will be a $150 charge.
+     *  ● We will be using a ⅜ nap roller for the walls, trim, doors and ceilings.
+     *
+     * notes for all four sections
+     * closing stuff which is also all standard
+    */
 
-    document.close();
+    // finish editing
+    document.print(&printer);
 
     return 0;
 }

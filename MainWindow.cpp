@@ -61,6 +61,7 @@ void MainWindow::UpdateDisplay()
 
     // update data preview
 
+
     // generate document logic
     if (ui->confirmDataChbx->isChecked() && ui->outputFileText->text() != "") {
         ui->generateDocumentBtn->setEnabled(true);

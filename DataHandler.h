@@ -15,7 +15,13 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QStandardPaths>
-
+#include <QTextDocument>
+#include <QTextCursor>
+#include <QTextEdit>
+#include <QFont>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QtPrintSupport/QPrinter>
 
 // enumerations
 
@@ -48,6 +54,10 @@ private:
     QString inputFilename;
     QString outputFilename;
     QStringList data;
+
+    // document
+    QTextDocument* textDocument;
+    QTextCursor* cursor;
 
 };
 
