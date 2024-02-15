@@ -12,17 +12,19 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -47,7 +49,9 @@ public:
     QPushButton *selectOutputFileBtn;
     QSpacerItem *horizontalSpacer_2;
     QGroupBox *groupBox_2;
-    QPlainTextEdit *plainTextEdit;
+    QTableWidget *tableWidget;
+    QCheckBox *confirmDataChbx;
+    QPushButton *processDataBtn;
     QPushButton *generateDocumentBtn;
     QMenuBar *menubar;
     QMenu *menuOptions;
@@ -123,9 +127,15 @@ public:
         groupBox_2 = new QGroupBox(centralwidget);
         groupBox_2->setObjectName("groupBox_2");
         groupBox_2->setGeometry(QRect(10, 140, 461, 401));
-        plainTextEdit = new QPlainTextEdit(groupBox_2);
-        plainTextEdit->setObjectName("plainTextEdit");
-        plainTextEdit->setGeometry(QRect(10, 30, 441, 361));
+        tableWidget = new QTableWidget(groupBox_2);
+        tableWidget->setObjectName("tableWidget");
+        tableWidget->setGeometry(QRect(10, 30, 441, 281));
+        confirmDataChbx = new QCheckBox(groupBox_2);
+        confirmDataChbx->setObjectName("confirmDataChbx");
+        confirmDataChbx->setGeometry(QRect(290, 340, 131, 40));
+        processDataBtn = new QPushButton(groupBox_2);
+        processDataBtn->setObjectName("processDataBtn");
+        processDataBtn->setGeometry(QRect(10, 320, 231, 71));
         generateDocumentBtn = new QPushButton(centralwidget);
         generateDocumentBtn->setObjectName("generateDocumentBtn");
         generateDocumentBtn->setGeometry(QRect(480, 160, 161, 71));
@@ -160,7 +170,9 @@ public:
         selectInputFileBtn->setText(QCoreApplication::translate("MainWindow", "Select Input File", nullptr));
         outputFileLbl->setText(QCoreApplication::translate("MainWindow", "Output Filename:", nullptr));
         selectOutputFileBtn->setText(QCoreApplication::translate("MainWindow", "Output File Destination", nullptr));
-        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "Verify Data", nullptr));
+        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "Process and Verfiy Data", nullptr));
+        confirmDataChbx->setText(QCoreApplication::translate("MainWindow", "Confirm Data", nullptr));
+        processDataBtn->setText(QCoreApplication::translate("MainWindow", "Process Input Data", nullptr));
         generateDocumentBtn->setText(QCoreApplication::translate("MainWindow", "Generate Document", nullptr));
         menuOptions->setTitle(QCoreApplication::translate("MainWindow", "Options", nullptr));
     } // retranslateUi

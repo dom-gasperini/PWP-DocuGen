@@ -40,8 +40,7 @@ public:
     void setData(QStringList data);
 
     // functions
-    int ReadData(QString filename);
-    int ProcessData();
+    int ProcessData(QString filename);
     int GenerateDocument(QString filename);
 
 

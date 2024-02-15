@@ -22,33 +22,65 @@ DataHandler::DataHandler()
 //                      Getters
 // -------------------------------------------------- //
 
+
+/**
+ * @brief DataHandler::getInputFilename
+ * @return
+ */
 QString DataHandler::getInputFilename() {
     return inputFilename;
 }
 
+
+/**
+ * @brief DataHandler::getOutputFilename
+ * @return
+ */
 QString DataHandler::getOutputFilename() {
     return outputFilename;
 }
 
+
+/**
+ * @brief DataHandler::getData
+ * @return
+ */
 QStringList DataHandler::getData() {
     return data;
 }
+
 
 // -------------------------------------------------- //
 //                      Setters
 // -------------------------------------------------- //
 
+
+/**
+ * @brief DataHandler::setInputFilename
+ * @param name
+ */
 void DataHandler::setInputFilename(QString name) {
     inputFilename = name;
 }
 
+
+/**
+ * @brief DataHandler::setOutputFilename
+ * @param name
+ */
 void DataHandler::setOutputFilename(QString name) {
     outputFilename = name;
 }
 
+
+/**
+ * @brief DataHandler::setData
+ * @param newData
+ */
 void DataHandler::setData(QStringList newData) {
     data = newData;
 }
+
 
 // -------------------------------------------------- //
 //                      Functions
@@ -60,7 +92,7 @@ void DataHandler::setData(QStringList newData) {
  * @param filename
  * @return error
  */
-int DataHandler::ReadData(QString filename) {
+int DataHandler::ProcessData(QString filename) {
     // create file object
     QFile file(filename);
 
@@ -83,6 +115,11 @@ int DataHandler::ReadData(QString filename) {
 }
 
 
+/**
+ * @brief DataHandler::GenerateDocument
+ * @param filename
+ * @return
+ */
 int DataHandler::GenerateDocument(QString filename) {
     // save file
     QString documentName = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/" + filename;

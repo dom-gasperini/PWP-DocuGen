@@ -60,6 +60,14 @@ void MainWindow::UpdateDisplay()
     dataHandler->setOutputFilename(ui->outputFileText->text());
 
     // update data preview
+
+    // generate document logic
+    if (ui->confirmDataChbx->isChecked() && ui->outputFileText->text() != "") {
+        ui->generateDocumentBtn->setEnabled(true);
+    }
+    else {
+        ui->generateDocumentBtn->setEnabled(false);
+    }
 }
 
 
@@ -112,12 +120,25 @@ void MainWindow::on_selectOutputFileBtn_clicked()
 
 
 /**
+ * @brief MainWindow::on_processDataBtn_clicked
+ */
+void MainWindow::on_processDataBtn_clicked()
+{
+    // parse data from input file
+    dataHandler->ProcessData(dataHandler->getInputFilename());
+}
+
+
+/**
  * @brief MainWindow::on_generateDocumentBtn_clicked
  */
 void MainWindow::on_generateDocumentBtn_clicked()
 {
     // generate the document and save it
     dataHandler->GenerateDocument(dataHandler->getOutputFilename());
+
+    // reset
+    ui->confirmDataChbx->setChecked(false);
 }
 
 
@@ -194,4 +215,3 @@ void MainWindow::on_actionDark_Mode_triggered(bool checked)
         qApp->setPalette(m_currentPalette);
     }
 }
-

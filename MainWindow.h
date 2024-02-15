@@ -58,5 +58,6 @@ private slots:
     void on_selectInputFileBtn_clicked();
     void on_selectOutputFileBtn_clicked();
     void on_generateDocumentBtn_clicked();
+    void on_processDataBtn_clicked();
 };
 #endif // MAINWINDOW_H
