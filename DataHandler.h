@@ -13,6 +13,8 @@
 #include <QObject>
 #include <QDateTime>
 #include <QFile>
+#include <QFileDialog>
+#include <QStandardPaths>
 
 
 // enumerations
@@ -28,7 +30,14 @@ public:
     DataHandler();
 
     // getters
+    QString getInputFilename();
+    QString getOutputFilename();
+    QStringList getData();
 
+    // setters
+    void setInputFilename(QString name);
+    void setOutputFilename(QString name);
+    void setData(QStringList data);
 
     // functions
     int ReadData(QString filename);

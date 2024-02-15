@@ -12,9 +12,16 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPlainTextEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
@@ -26,6 +33,22 @@ public:
     QAction *actionDark_Mode;
     QAction *actionAbout;
     QWidget *centralwidget;
+    QGroupBox *groupBox;
+    QWidget *layoutWidget;
+    QGridLayout *gridLayout;
+    QLabel *inputFileLbl;
+    QLineEdit *inputFileText;
+    QPushButton *selectInputFileBtn;
+    QSpacerItem *horizontalSpacer;
+    QWidget *layoutWidget1;
+    QGridLayout *gridLayout_2;
+    QLabel *outputFileLbl;
+    QLineEdit *outputFileText;
+    QPushButton *selectOutputFileBtn;
+    QSpacerItem *horizontalSpacer_2;
+    QGroupBox *groupBox_2;
+    QPlainTextEdit *plainTextEdit;
+    QPushButton *generateDocumentBtn;
     QMenuBar *menubar;
     QMenu *menuOptions;
     QStatusBar *statusbar;
@@ -34,7 +57,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 600);
+        MainWindow->resize(1069, 840);
         actionDark_Mode = new QAction(MainWindow);
         actionDark_Mode->setObjectName("actionDark_Mode");
         actionDark_Mode->setCheckable(true);
@@ -42,10 +65,74 @@ public:
         actionAbout->setObjectName("actionAbout");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
+        groupBox = new QGroupBox(centralwidget);
+        groupBox->setObjectName("groupBox");
+        groupBox->setGeometry(QRect(10, 10, 881, 111));
+        layoutWidget = new QWidget(groupBox);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(10, 30, 421, 71));
+        gridLayout = new QGridLayout(layoutWidget);
+        gridLayout->setObjectName("gridLayout");
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        inputFileLbl = new QLabel(layoutWidget);
+        inputFileLbl->setObjectName("inputFileLbl");
+
+        gridLayout->addWidget(inputFileLbl, 0, 0, 1, 1);
+
+        inputFileText = new QLineEdit(layoutWidget);
+        inputFileText->setObjectName("inputFileText");
+        inputFileText->setReadOnly(true);
+
+        gridLayout->addWidget(inputFileText, 0, 1, 1, 1);
+
+        selectInputFileBtn = new QPushButton(layoutWidget);
+        selectInputFileBtn->setObjectName("selectInputFileBtn");
+
+        gridLayout->addWidget(selectInputFileBtn, 1, 0, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 1, 1, 1, 1);
+
+        layoutWidget1 = new QWidget(groupBox);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(450, 30, 421, 71));
+        gridLayout_2 = new QGridLayout(layoutWidget1);
+        gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        outputFileLbl = new QLabel(layoutWidget1);
+        outputFileLbl->setObjectName("outputFileLbl");
+
+        gridLayout_2->addWidget(outputFileLbl, 0, 0, 1, 1);
+
+        outputFileText = new QLineEdit(layoutWidget1);
+        outputFileText->setObjectName("outputFileText");
+        outputFileText->setReadOnly(false);
+
+        gridLayout_2->addWidget(outputFileText, 0, 1, 1, 1);
+
+        selectOutputFileBtn = new QPushButton(layoutWidget1);
+        selectOutputFileBtn->setObjectName("selectOutputFileBtn");
+
+        gridLayout_2->addWidget(selectOutputFileBtn, 1, 0, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_2, 1, 1, 1, 1);
+
+        groupBox_2 = new QGroupBox(centralwidget);
+        groupBox_2->setObjectName("groupBox_2");
+        groupBox_2->setGeometry(QRect(10, 140, 461, 401));
+        plainTextEdit = new QPlainTextEdit(groupBox_2);
+        plainTextEdit->setObjectName("plainTextEdit");
+        plainTextEdit->setGeometry(QRect(10, 30, 441, 361));
+        generateDocumentBtn = new QPushButton(centralwidget);
+        generateDocumentBtn->setObjectName("generateDocumentBtn");
+        generateDocumentBtn->setGeometry(QRect(480, 160, 161, 71));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 23));
+        menubar->setGeometry(QRect(0, 0, 1069, 23));
         menuOptions = new QMenu(menubar);
         menuOptions->setObjectName("menuOptions");
         MainWindow->setMenuBar(menubar);
@@ -68,6 +155,13 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         actionDark_Mode->setText(QCoreApplication::translate("MainWindow", "Dark Mode", nullptr));
         actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("MainWindow", "File Settings", nullptr));
+        inputFileLbl->setText(QCoreApplication::translate("MainWindow", "Input Filename:", nullptr));
+        selectInputFileBtn->setText(QCoreApplication::translate("MainWindow", "Select Input File", nullptr));
+        outputFileLbl->setText(QCoreApplication::translate("MainWindow", "Output Filename:", nullptr));
+        selectOutputFileBtn->setText(QCoreApplication::translate("MainWindow", "Output File Destination", nullptr));
+        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "Verify Data", nullptr));
+        generateDocumentBtn->setText(QCoreApplication::translate("MainWindow", "Generate Document", nullptr));
         menuOptions->setTitle(QCoreApplication::translate("MainWindow", "Options", nullptr));
     } // retranslateUi
 

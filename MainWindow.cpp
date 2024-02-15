@@ -30,6 +30,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // setup about dialog
     m_aboutDialog = new AboutDlg();
 
+    // setup data handler
+    dataHandler = new DataHandler();
+
     // setup timers
     m_displayUpdateTimer = new QTimer(this);
     connect(m_displayUpdateTimer, SIGNAL(timeout()), this, SLOT(UpdateDisplay()));
@@ -51,7 +54,70 @@ MainWindow::~MainWindow()
  */
 void MainWindow::UpdateDisplay()
 {
+    // update filenames
+    ui->inputFileText->setText(dataHandler->getInputFilename());
 
+    dataHandler->setOutputFilename(ui->outputFileText->text());
+
+    // update data preview
+}
+
+
+/**
+ * @brief MainWindow::on_selectInputFileBtn_clicked
+ */
+void MainWindow::on_selectInputFileBtn_clicked()
+{
+    // inits
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    // dialog.setNameFilter(tr("CSV (*.csv"));
+    dialog.setViewMode(QFileDialog::Detail);
+    QString selectedFilename;
+
+    // select file
+    if (dialog.exec()) {
+        selectedFilename = dialog.selectedFiles().at(0);
+    }
+
+    qDebug() << "input file: " << selectedFilename;
+
+    // save filename
+    dataHandler->setInputFilename(selectedFilename);
+}
+
+
+/**
+ * @brief MainWindow::on_selectOutputFileBtn_clicked
+ */
+void MainWindow::on_selectOutputFileBtn_clicked()
+{
+    // inits
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    // dialog.setNameFilter(tr("CSV (*.csv"));
+    dialog.setViewMode(QFileDialog::Detail);
+    QString selectedFilename;
+
+    // select file
+    if (dialog.exec()) {
+        selectedFilename = dialog.selectedFiles().at(0);
+    }
+
+    qDebug() << "output file: " << selectedFilename;
+
+    // save filename
+    dataHandler->setOutputFilename(selectedFilename);
+}
+
+
+/**
+ * @brief MainWindow::on_generateDocumentBtn_clicked
+ */
+void MainWindow::on_generateDocumentBtn_clicked()
+{
+    // generate the document and save it
+    dataHandler->GenerateDocument(dataHandler->getOutputFilename());
 }
 
 

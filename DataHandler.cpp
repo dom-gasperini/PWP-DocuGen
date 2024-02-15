@@ -18,6 +18,37 @@ DataHandler::DataHandler()
 
 }
 
+// -------------------------------------------------- //
+//                      Getters
+// -------------------------------------------------- //
+
+QString DataHandler::getInputFilename() {
+    return inputFilename;
+}
+
+QString DataHandler::getOutputFilename() {
+    return outputFilename;
+}
+
+QStringList DataHandler::getData() {
+    return data;
+}
+
+// -------------------------------------------------- //
+//                      Setters
+// -------------------------------------------------- //
+
+void DataHandler::setInputFilename(QString name) {
+    inputFilename = name;
+}
+
+void DataHandler::setOutputFilename(QString name) {
+    outputFilename = name;
+}
+
+void DataHandler::setData(QStringList newData) {
+    data = newData;
+}
 
 // -------------------------------------------------- //
 //                      Functions
@@ -47,6 +78,37 @@ int DataHandler::ReadData(QString filename) {
     }
 
     qDebug() << data;
+
+    return 0;
+}
+
+
+int DataHandler::GenerateDocument(QString filename) {
+    // save file
+    QString documentName = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/" + filename;
+    qDebug() << "new filename: " << documentName;
+
+    // open new file
+    QFile document(documentName);
+
+    if (document.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        // open text stream
+        QTextStream documentData(&document);
+
+        // write document
+        documentData << "test";
+
+
+
+
+
+    }
+    else {
+        qDebug() << "Failed to write or create/open new file!";
+        return 1;
+    }
+
+    document.close();
 
     return 0;
 }
