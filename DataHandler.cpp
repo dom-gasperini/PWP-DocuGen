@@ -176,59 +176,102 @@ int DataHandler::GenerateDocument(QString filename) {
 
         QString duration = "<div>This job will take " + estimateData.sections.at(i).manHours + " days to complete with <strong>an average of " + estimateData.sections.at(i).numPeople + " painters per day on site.</strong></div> <br>";
 
-        QString services = "<div>Services included within this estimate: <br></div>";
+        QString servicesList = "<li>Floor Protection </li>"
+                               "<li>Wall Hung Items Deinstallation (outlet covers, switch plates, etc.) </li>"
+                               "<li>Patching (walls) </li>"
+                               "<li>Sanding (by hand and with a Festool MIDI I Dust Extractor) </li>"
+                               "<li>Dusting </li>"
+                               "<li>Taping </li>"
+                               "<li>Masking </li>"
+                               "<li>Spot Priming (stains, drywall repairs, and dark spots) </li>"
+                               "<li>Full Priming (upstairs bathroom) </li>"
+                               "<li>Painting (2 coats) </li>"
+                               "<li>Reassembling Wall Hung Items (outlet covers, switch plates, etc.) </li>"
+                               "<li>Daily Jobsite cleanup (trash removal and tool organization) </li>"
+                               "<li>Final Cleanup (sweeping, vacuum, mopping if needed) </li>"
+                               "<li>Touch ups as needed </li>";
+        QString services = "<div><strong>Services included within this estimate:</strong> <ul>" + servicesList + "</ul></div>";
 
-        QString supplies = "<div>Expected Supplies needed for this job: <br></div>";
+        QString suppliesList = "";
+        for (int j = 0; j < estimateData.sections.at(i).expectedSupplies.size(); ++j) {
+            suppliesList += "<li>" + estimateData.sections.at(i).expectedSupplies.at(j) + "</li>";
+        }
+        QString supplies = "<div><strong>Expected Supplies needed for this job:</strong> <ul>" + suppliesList + "</ul> </div>";
 
         QString suppliesCost = "<div><strong>Esitmated cost for all supplies:</strong> ~$" + estimateData.sections.at(i).expectedSuppliesCost + "</div>";
 
-        QString notes = "<div><strong>Specific Notes about this Section:</strong><br></div>";
+        QString notesList = "";
+        for (int j = 0; j < estimateData.sections.at(i).notes.size(); ++j) {
+            notesList += "<li>" + estimateData.sections.at(i).notes.at(j) + "</li>";
+        }
+        QString notes = "<div><strong>Specific Notes about this Section:</strong> <ul>" + notesList + "</ul> </div>";
 
         // add it all together
         sectionAll += sectionTitle + start + duration + services + supplies + suppliesCost + notes;
-
-        /* Section Breakdown
-         * After going over measurements and calculating costs, this job comes out to $____ with supplies included.
-         *
-         * This job will take ___ - ___ days to complete with an average of __ painters per day on site.
-         *
-         * Services included within this estimate: (THIS IS STANDARD)
-         *  ● Floor Protection
-         *  ● Wall Hung Items Deinstallation (outlet covers, switch plates, etc.)
-         *  ● Patching (walls)
-         *  ● Sanding (by hand and with a Festool MIDI I Dust Extractor)
-         *  ● Dusting
-         *  ● Taping
-         *  ● Masking
-         *  ● Spot Priming (stains, drywall repairs, and dark spots)
-         *  ● Full Priming (upstairs bathroom)
-         *  ● Painting (2 coats)
-         *  ● Reassembling Wall Hung Items (outlet covers, switch plates, etc.)
-         *  ● Daily Jobsite cleanup (trash removal and tool organization)
-         *  ● Final Cleanup (sweeping, vacuum, mopping if needed)
-         *  ● Touch ups as needed
-         *
-         *
-         *  Expected Supplies needed for this job:
-         *  ● _ gallons of Sherwin Williams Duration paint (satin, walls)
-         *  ● _ gallons of Sherwin Williams ProMar 400 paint (flat, ceiling)
-         *  ● _ gallons of Sherwin Williams Cashmere paint (semi gloss, trim and door)
-         *  ● _ gallons of Sherwin Williams Multipurpose Primer (upstairs bathroom)
-         *  ● _ quart of Kilz Original oil primer (spot priming)
-         *  ● Misc. (Sandpaper, painters plastic, tape, etc.)
-         *
-         *
-         *  Specific Notes about this section:
-         *  ● This estimate is computed with 1 wall, 1 ceiling, and 1 trim & door color. Any additional colors will be a $150 charge.
-         *  ● We will be using a ⅜ nap roller for the walls, trim, doors and ceilings.
-         *
-         * notes for all four sections
-         * closing stuff which is also all standard
-         */
     }
 
+    // notes for all four sections
+    QString generalNotesList =
+        "<li><strong>Defining Trim: window trim, baseboards, and door trims.</strong> This is importantwhen we describe how many colors are included in each section. </li>"
+        "<li><strong>Services excluded in all 4 sections of this estimate:</strong> Drywall Repair (None initially detected) <strong>We will professionally complete the drywall repairs for $65/hr plus materials.</strong> </li>"
+        "<li><strong>Moving Furniture, wall hung items like mirrors and artwork, rugs, and other decorations will cost $50/hr. </strong></li>";
+    QString generalNotes = "<h3><strong>Notes pertaining to all 4 sections of this estimate</strong></h3> <ul>" + generalNotesList + "</ul>";
+
+    // other services
+    QString otherOfferedServicesList =
+        "<li>Rot Repair </li>"
+        "<li>Gutter Cleaning </li>"
+        "<li>Pressure Washing </li>"
+        "<li>EMP/IRC Lead Inspection </li>"
+        "<li>Trim Installation </li>";
+    QString otherOfferedServices = "<div><strong>Other services we provide: </strong> <ul>" + otherOfferedServicesList + "</ul> </div>";
+
+    // other details & stipulations
+    QString detailsAndStipulationsList =
+        "<li>We will require a <strong>50% deposit of the stated price on day 1</strong> when our painters and tools arrive. </li>"
+        "<li>We accept cash, check, credit card (3% fee applied), Zelle, and Venmo (2% fee applied). <strong>Invoices are sent over Quickbooks.</strong> </li>"
+        "<li><strong>We are a professional painting company.</strong> If we find any spots outside of the scope, within reason, we will take care of these areas at no extra charge. <strong>Spots we deem to be outside of the scope will be communicated immediately with the general contractor and/or client at a $60/hr rate.</strong> There is a minimum <strong>$50 charge for any change order</strong> made during the completion of the job (change of scope, change of color, etc.). </li>"
+        "<li>There is no increased overtime labor rate if we have painters in their overtime range. </li>"
+        "<li>All other contractors working on this site simultaneously to Painting With Purpose LLC must be approved by Painting With Purpose LLC before the job begins. </li>"
+        "<li>As much as we LOVE our furry, four-legged friends, Painting With Purpose LLC is <strong>not liable for any damage, disturbance or destructive behavior from any pet</strong> in or around the jobsite and we strongly suggest that you <strong>please keep your pets away from the jobsite while work is in progress.</strong> </li>"
+        "<li>Painting With Purpose offers a <strong>1 year warranty</strong> on all work done with Benjamin Moore and Sherwin Williams products. </li>"
+        "<li>We are <strong>EPA lead certified.</strong> </li>"
+        "<li>We are <strong>EMP/IRC certified.</strong> </li>"
+        "<li>We are <strong>registered Vermont contractors.</strong> </li>"
+        "<li>We are <strong>fully insured</strong>. We possess general liability up to 2 million dollars, workers comp, commercial auto with a non-hired auto addition, and short & long term disability with life insurance. </li>"
+        "<li>Our standard working hours are <strong>8AM-4PM Monday-Friday and 9-4 on Saturday.</strong> </li>"
+        "<li>A portion of profits made on this job, like any job Painting With Purpose takes on, will be donated to CVOEO, helping the homeless of Chittenden and Franklin County find andmake rent, utility, and security payments on secure housing. Since our founding, we have <strong>raised over $14000 for our cause. Learn more on our website, cited at the bottom of this estimate.</strong> </li>";
+    QString detailsAndStipulations = "<div><u><strong>Other Important Details & Stipulations </strong></u> <ul>" + detailsAndStipulationsList + "</ul> </div>";
+
+    // references
+    QString referencesList =
+        "<li>Jeff Ellison (Building Manager, Middlebury Congregational Church) 802-388-7634 buildingmanager@midducc.org </li>"
+        "<li>Joel Ribout (Facilities Manager, Saint Michael’s College) 802-654-2365 jribout@smcvt.edu </li>"
+        "<li>Patric Walker (Owner, New Foundations Construction) 802-734-6879 </li>"
+        "<li>Ieshia Harris (Property Manager, Champlain Housing Trust) 802-310-9711 Ieshia.Harris@champlainhousingtrust.org </li>"
+        "<li>Adam Marchessault (Owner of ‘Summit and Shore of VT’, Vocational Educator at ‘BRIGHTality Specialized Educational School’) 802-324-8838 summitpropertyadam@gmail.com </li>"
+        "<li>Esther Lotz (Owner, Esther Lotz Commercial and Industrial Real Estate) 802-343-0363 estherlotz@aol.com </li>"
+        "<li>Kathy Mraz (Client of our most labor intensive job) 510-708-5787 razanonti@yahoo.com </li>";
+    QString references = "<div><strong>We will provide you with a few reference contacts. </strong> <ul> " + referencesList + "</div>";
+
+    // insurance
+    QString insurance = "<div>Insurance Contact: David Palmer (Palmer Insurance LLC) 802-482-5678</div> <br>";
+
+    // closing words
+    QString closingWords = "<div>Let us know any other questions you may have and <strong>Thank You</strong> for your time. </div> <br>";
+
+    // signature
+    QString signature = "<div>Zach Dunn, Painting With Purpose <br> 802-724-6837 | Office@pwpvt.com</div>";
+
+    // website and project plugs
+    QString plug = "<h4><strong>Visit PWPVT.com to learn more and see past projects! </strong></h4>";
+
+    // signature picture because lines are hard
+
+    // lead-safe picture
+
     // put it all together
-    html += header + title + date + address + opener + numSections + sectionAll;
+    html += header + title + date + address + opener + numSections + sectionAll + generalNotes + otherOfferedServices + detailsAndStipulations + references + insurance + closingWords + signature + plug;
 
     QTextDocument document;
     document.setHtml(html);
@@ -238,8 +281,6 @@ int DataHandler::GenerateDocument(QString filename) {
     printer.setPageSize(QPageSize::A4);
     printer.setOutputFileName(documentName);
     printer.setPageMargins(QMarginsF(15, 15, 15, 15));
-
-    // painter.drawImage(r, QImage(":/images/pwp-logo.png"));
 
     // finish editing
     document.print(&printer);
