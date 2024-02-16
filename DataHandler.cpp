@@ -145,21 +145,91 @@ int DataHandler::GenerateDocument(QString filename) {
 
     // document content
     QString html = "";
+    QString sectionAll = "";
 
+    // header with return address
     QString header = "<div align=right>PO Box 9311<br>South Burlington, VT<br>05407-9311</div>";
+
+    // pwp logo centered
+
+
+    // title
     QString title = "<h1 align=center>Job Estimate</h1>";
-    QString date = "<div align=left><u>" + estimateData.date.toString("MM.dd.yyyy") + "</u></div><br>";
-    QString address = "<div align=left><u>" + estimateData.address + "</u></div><br>";
-    QString opener = "<div align=left>Hi " + estimateData.name + ",<br><strong>Thank you</strong> for patiently waiting for our estimate.</div><br>";
-    QString numSections = "<div align=left>We have broken this estimate down into " + QString::number(estimateData.numSections) + " sections.</div><br>";
-    QString content = "<p align=justify>"
-        "document content document content document content document content document content document content document content document content document content document content "
-        "document content document content document content document content document content document content document content document content document content document content "
-        "</p>"
-        "<div align=right>sincerly</div>";
+
+    // date underlined
+    QString date = "<div align=left><u>" + estimateData.date + "</u></div>";
+
+    // customer address underlined
+    QString address = "<div align=left><u>" + estimateData.address + "</u></div> <br>";
+
+    // Thank you message
+    QString opener = "<div align=left>Hi " + estimateData.name + ",<br><strong>Thank you</strong> for patiently waiting for our estimate.</div>";
+
+    // We broke this down into ___ sections
+    QString numSections = "<h3 align=left><strong>We have broken this estimate down into " + estimateData.numSections + " section(s).</strong></h3>";
+
+    // do the sections
+    for (int i = 0; i < estimateData.numSections.toInt(); ++i) {
+        QString sectionTitle = "<h3>" + estimateData.sections.at(i).title + "</h3>";
+
+        QString start = "<div>After going over measurements and calculating costs, this job comes out to <strong>$" + estimateData.sections.at(i).billingPrice + " with supplies included.</strong></div> <br>";
+
+        QString duration = "<div>This job will take " + estimateData.sections.at(i).manHours + " days to complete with <strong>an average of " + estimateData.sections.at(i).numPeople + " painters per day on site.</strong></div> <br>";
+
+        QString services = "<div>Services included within this estimate: <br></div>";
+
+        QString supplies = "<div>Expected Supplies needed for this job: <br></div>";
+
+        QString suppliesCost = "<div><strong>Esitmated cost for all supplies:</strong> ~$" + estimateData.sections.at(i).expectedSuppliesCost + "</div>";
+
+        QString notes = "<div><strong>Specific Notes about this Section:</strong><br></div>";
+
+
+        // add it all together
+        sectionAll += sectionTitle + start + duration + services + supplies + suppliesCost + notes;
+
+        /* Section Breakdown
+         * After going over measurements and calculating costs, this job comes out to $____ with supplies included.
+         *
+         * This job will take ___ - ___ days to complete with an average of __ painters per day on site.
+         *
+         * Services included within this estimate: (THIS IS STANDARD)
+         *  ● Floor Protection
+         *  ● Wall Hung Items Deinstallation (outlet covers, switch plates, etc.)
+         *  ● Patching (walls)
+         *  ● Sanding (by hand and with a Festool MIDI I Dust Extractor)
+         *  ● Dusting
+         *  ● Taping
+         *  ● Masking
+         *  ● Spot Priming (stains, drywall repairs, and dark spots)
+         *  ● Full Priming (upstairs bathroom)
+         *  ● Painting (2 coats)
+         *  ● Reassembling Wall Hung Items (outlet covers, switch plates, etc.)
+         *  ● Daily Jobsite cleanup (trash removal and tool organization)
+         *  ● Final Cleanup (sweeping, vacuum, mopping if needed)
+         *  ● Touch ups as needed
+         *
+         *
+         *  Expected Supplies needed for this job:
+         *  ● _ gallons of Sherwin Williams Duration paint (satin, walls)
+         *  ● _ gallons of Sherwin Williams ProMar 400 paint (flat, ceiling)
+         *  ● _ gallons of Sherwin Williams Cashmere paint (semi gloss, trim and door)
+         *  ● _ gallons of Sherwin Williams Multipurpose Primer (upstairs bathroom)
+         *  ● _ quart of Kilz Original oil primer (spot priming)
+         *  ● Misc. (Sandpaper, painters plastic, tape, etc.)
+         *
+         *
+         *  Specific Notes about this section:
+         *  ● This estimate is computed with 1 wall, 1 ceiling, and 1 trim & door color. Any additional colors will be a $150 charge.
+         *  ● We will be using a ⅜ nap roller for the walls, trim, doors and ceilings.
+         *
+         * notes for all four sections
+         * closing stuff which is also all standard
+         */
+    }
 
     // put it all together
-    html += header + title + date + address + opener + content;
+    html += header + title + date + address + opener + numSections + sectionAll;
 
     QTextDocument document;
     document.setHtml(html);
@@ -170,59 +240,7 @@ int DataHandler::GenerateDocument(QString filename) {
     printer.setOutputFileName(documentName);
     printer.setPageMargins(QMarginsF(15, 15, 15, 15));
 
-    // header with return address
-
-    // pwp logo centered
     // painter.drawImage(r, QImage(":/images/pwp-logo.png"));
-
-    // date underlined
-
-    // customer address underlined
-
-    // Thank you message
-
-
-    // We broke this down into ___ sections
-    // Sections
-
-    /* Section Breakdown
-     * After going over measurements and calculating costs, this job comes out to $____ with supplies included.
-     *
-     * This job will take ___ - ___ days to complete with an average of __ painters per day on site.
-     *
-     * Services included within this estimate: (THIS IS STANDARD)
-     *  ● Floor Protection
-     *  ● Wall Hung Items Deinstallation (outlet covers, switch plates, etc.)
-     *  ● Patching (walls)
-     *  ● Sanding (by hand and with a Festool MIDI I Dust Extractor)
-     *  ● Dusting
-     *  ● Taping
-     *  ● Masking
-     *  ● Spot Priming (stains, drywall repairs, and dark spots)
-     *  ● Full Priming (upstairs bathroom)
-     *  ● Painting (2 coats)
-     *  ● Reassembling Wall Hung Items (outlet covers, switch plates, etc.)
-     *  ● Daily Jobsite cleanup (trash removal and tool organization)
-     *  ● Final Cleanup (sweeping, vacuum, mopping if needed)
-     *  ● Touch ups as needed
-     *
-     *
-     *  Expected Supplies needed for this job:
-     *  ● _ gallons of Sherwin Williams Duration paint (satin, walls)
-     *  ● _ gallons of Sherwin Williams ProMar 400 paint (flat, ceiling)
-     *  ● _ gallons of Sherwin Williams Cashmere paint (semi gloss, trim and door)
-     *  ● _ gallons of Sherwin Williams Multipurpose Primer (upstairs bathroom)
-     *  ● _ quart of Kilz Original oil primer (spot priming)
-     *  ● Misc. (Sandpaper, painters plastic, tape, etc.)
-     *
-     *
-     *  Specific Notes about this section:
-     *  ● This estimate is computed with 1 wall, 1 ceiling, and 1 trim & door color. Any additional colors will be a $150 charge.
-     *  ● We will be using a ⅜ nap roller for the walls, trim, doors and ceilings.
-     *
-     * notes for all four sections
-     * closing stuff which is also all standard
-    */
 
     // finish editing
     document.print(&printer);

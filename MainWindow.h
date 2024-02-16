@@ -38,6 +38,7 @@ public:
     ~MainWindow();
 
     // functions
+    void ParseData();
     void PopulateTable();
 
 private:
@@ -53,6 +54,8 @@ private:
 
     // data
     DataHandler* dataHandler;
+    int numRows = 0;
+    int numColumns = 0;
 
 private slots:
     void UpdateDisplay();

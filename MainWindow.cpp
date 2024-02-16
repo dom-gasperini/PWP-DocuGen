@@ -78,18 +78,180 @@ void MainWindow::UpdateDisplay()
 
 
 /**
+ * @brief MainWindow::ParseData
+ */
+void MainWindow::ParseData() {
+    // inits
+    QList<QString> tmpData;
+    EstimateData tmpEstimate;
+
+    // clear
+    ui->tableWidget->clear();
+
+    tmpData = dataHandler->getData();
+
+    qDebug() << "tmp data" << tmpData;
+
+    // parse out data
+    tmpEstimate.name = tmpData.at(0).split(",").at(1);
+    qDebug() << "name: " << tmpEstimate.name;
+
+    tmpEstimate.address = tmpData.at(1).split(",").at(1).split("\"").at(1);
+    qDebug() << "address: " << tmpEstimate.address;
+
+    tmpEstimate.date = tmpData.at(2).split(",").at(1).split("\"").at(1);
+    qDebug() << "date: " << tmpEstimate.date;
+
+    tmpEstimate.startDate = tmpData.at(3).split(",").at(1);
+    qDebug() << "start date: " << tmpEstimate.startDate;
+
+    tmpEstimate.numSections = tmpData.at(4).split(",").at(1);
+    qDebug() << "num sections: " << tmpEstimate.numSections;
+
+    // add sections
+    for (int i = 0; i < tmpEstimate.numSections.toInt(); ++i) {
+        // inits
+        EstimateSection tmpSection;
+        QList<QString> tmpList;
+
+        // parse out section data
+        tmpSection.title = tmpData.at(5).split(",").at(1);
+        qDebug() << "section title: " << tmpSection.title;
+
+        tmpSection.billingPrice = tmpData.at(6).split(",").at(1);
+        qDebug() << "est price: " << tmpSection.billingPrice;
+
+        tmpSection.manHours = tmpData.at(7).split(",").at(1);
+        qDebug() << "man hours: " << tmpSection.manHours;
+
+        tmpSection.numPeople = tmpData.at(8).split(",").at(1);
+        qDebug() << "num people: " << tmpSection.numPeople;
+
+        // included areas
+        tmpList = tmpData.at(9).split(",");
+        for (int i = 1; i < tmpList.size(); ++i) {     // start at 1 to not include data title
+            if (tmpList.at(i) != "") {
+                QString tmp = tmpList.at(i);
+                tmp.replace("\"", "");
+                tmpSection.includedAreas.append(tmp);
+            }
+        }
+        if (tmpSection.includedAreas.size() > numColumns) {
+            numColumns = tmpSection.includedAreas.size();
+        }
+        qDebug() << "included areas: " << tmpSection.includedAreas;
+
+        // excluded areas
+        tmpList = tmpData.at(10).split(",");
+        for (int i = 1; i < tmpList.size(); ++i) {     // start at 1 to not include data title
+            if (tmpList.at(i) != "") {
+                QString tmp = tmpList.at(i);
+                tmp.replace("\"", "");
+                tmpSection.excludedAreas.append(tmp);
+            }
+        }
+        if (tmpSection.excludedAreas.size() > numColumns) {
+            numColumns = tmpSection.excludedAreas.size();
+        }
+        qDebug() << "excluded areas: " << tmpSection.excludedAreas;
+
+        // expected supplies
+        tmpList = tmpData.at(11).split(",");
+        for (int i = 1; i < tmpList.size(); ++i) {
+            if (tmpList.at(i) != "") {
+                QString tmp = tmpList.at(i);
+                tmp.replace("\"", "");
+                tmpSection.expectedSupplies.append(tmp);
+            }
+        }
+        if (tmpSection.expectedSupplies.size() > numColumns) {
+            numColumns = tmpSection.expectedSupplies.size();
+        }
+        qDebug() << "expected supplies: " << tmpSection.expectedSupplies;
+
+        // expected supplies cost
+        tmpSection.expectedSuppliesCost = tmpData.at(12).split(",").at(1);
+        qDebug() << "expected supplies cost: " << tmpSection.expectedSuppliesCost;
+
+        // notes
+        tmpList = tmpData.at(13).split(",");
+        for (int i = 1; i < tmpList.size(); ++i) {
+            if (tmpList.at(i) != "") {
+                QString tmp = tmpList.at(i);
+                tmp.replace("\"", "");
+                tmpSection.notes.append(tmp);
+            }
+        }
+        if (tmpSection.notes.size() > numColumns) {
+            numColumns = tmpSection.notes.size();
+        }
+        qDebug() << "notes: " << tmpSection.notes;
+
+        // add to overall data
+        tmpEstimate.sections.append(tmpSection);
+    }
+
+    // save estimate
+    dataHandler->setEstimateData(tmpEstimate);
+}
+
+
+/**
  * @brief MainWindow::PopulateTable
  */
 void MainWindow::PopulateTable()
 {
     // inits
-    ui->tableWidget->clear();
+    int numRows;
 
+    // parse the raw data
+    ParseData();
 
-    // do things
-    ui->tableWidget->insertRow(0);
+    // calculate rows
+    numRows = (5 + (dataHandler->getEstimateData().numSections.toInt() * 11)) - 2;
 
-    ui->tableWidget->insertColumn(0);
+    // add rows and columns
+    for (int i = 0; i < numRows; ++i) {
+        ui->tableWidget->insertRow(i);
+    }
+    for (int i = 0; i < numColumns; ++i) {
+        ui->tableWidget->insertColumn(i);
+    }
+
+    // input row data
+    ui->tableWidget->setItem(0, 0, new QTableWidgetItem("Name", QTableWidgetItem::Type));
+    ui->tableWidget->setItem(1, 0, new QTableWidgetItem("Address", QTableWidgetItem::Type));
+    ui->tableWidget->setItem(2, 0, new QTableWidgetItem("Date", QTableWidgetItem::Type));
+    ui->tableWidget->setItem(3, 0, new QTableWidgetItem("Start Date", QTableWidgetItem::Type));
+    ui->tableWidget->setItem(4, 0, new QTableWidgetItem("# Sections", QTableWidgetItem::Type));
+
+    for (int i = 0; i < dataHandler->getEstimateData().numSections.toInt(); ++i) {
+        if (i == 0) {
+            ui->tableWidget->setItem(5, 0, new QTableWidgetItem("Title", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(6, 0, new QTableWidgetItem("Est $", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(7, 0, new QTableWidgetItem("Man Hours", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(8, 0, new QTableWidgetItem("# Painters", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(9, 0, new QTableWidgetItem("Included Areas", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(10, 0, new QTableWidgetItem("Excluded Areas", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(11, 0, new QTableWidgetItem("Expected Supplies", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(12, 0, new QTableWidgetItem("Expected Supplies $", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(13, 0, new QTableWidgetItem("Notes", QTableWidgetItem::Type));
+        }
+        else {
+            ui->tableWidget->setItem(5 + 9*i, 0, new QTableWidgetItem("Title", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(6 + 9*i, 0, new QTableWidgetItem("Est $", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(7 + 9*i, 0, new QTableWidgetItem("Man Hours", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(8 + 9*i, 0, new QTableWidgetItem("# Painters", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(9 + 9*i, 0, new QTableWidgetItem("Included Areas", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(10 + 9*i, 0, new QTableWidgetItem("Excluded Areas", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(11 + 9*i, 0, new QTableWidgetItem("Expected Supplies", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(12 + 9*i, 0, new QTableWidgetItem("Expected Supplies $", QTableWidgetItem::Type));
+            ui->tableWidget->setItem(13 + 9*i, 0, new QTableWidgetItem("Notes", QTableWidgetItem::Type));
+        }
+    }
+
+    // input data
+
 }
 
 

@@ -24,18 +24,27 @@
 #include <QtPrintSupport/QPrinter>
 
 // typedefs
+typedef struct EstimateSectionStruct {
+    QString title;
+    QString manHours;
+    QString numPeople;
+    QString billingPrice;
+    QString jobDeposit;
+    QString timeline;
+    QString expectedSuppliesCost;
+    QVector<QString> includedAreas;
+    QVector<QString> excludedAreas;
+    QVector<QString> expectedSupplies;
+    QVector<QString> notes;
+} EstimateSection;
+
 typedef struct EstimateDataStruct {
     QString name;
-    QString title;
     QString address;
-    QDate date;
-    int numSections;
-    float manHours;
-    float numGallons;
-    float billingPrice;
-    float jobDeposit;
-    float donationAmount;
-    QString timeline;
+    QString date;
+    QString startDate;
+    QString numSections;
+    QVector<EstimateSection> sections;
 } EstimateData;
 
 
