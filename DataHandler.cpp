@@ -184,7 +184,6 @@ int DataHandler::GenerateDocument(QString filename) {
 
         QString notes = "<div><strong>Specific Notes about this Section:</strong><br></div>";
 
-
         // add it all together
         sectionAll += sectionTitle + start + duration + services + supplies + suppliesCost + notes;
 

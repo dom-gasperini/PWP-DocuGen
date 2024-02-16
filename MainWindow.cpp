@@ -97,9 +97,11 @@ void MainWindow::ParseData() {
     qDebug() << "name: " << tmpEstimate.name;
 
     tmpEstimate.address = tmpData.at(1).split(",").at(1).split("\"").at(1);
+    tmpEstimate.address += "," + tmpData.at(1).split(",").at(2).split("\"").at(0);
     qDebug() << "address: " << tmpEstimate.address;
 
     tmpEstimate.date = tmpData.at(2).split(",").at(1).split("\"").at(1);
+    tmpEstimate.date += "," + tmpData.at(2).split(",").at(2).split("\"").at(0);
     qDebug() << "date: " << tmpEstimate.date;
 
     tmpEstimate.startDate = tmpData.at(3).split(",").at(1);
@@ -201,11 +203,14 @@ void MainWindow::ParseData() {
  */
 void MainWindow::PopulateTable()
 {
-    // inits
-    int numRows;
-
     // parse the raw data
     ParseData();
+
+    // reset the table
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->setColumnCount(0);
+    ui->tableWidget->clear();
+    ui->tableWidget->clearContents();
 
     // calculate rows
     numRows = (5 + (dataHandler->getEstimateData().numSections.toInt() * 11)) - 2;
@@ -250,7 +255,7 @@ void MainWindow::PopulateTable()
         }
     }
 
-    // input data
+    // input data into table
 
 }
 
@@ -297,27 +302,21 @@ void MainWindow::on_processDataBtn_clicked()
  */
 void MainWindow::on_generateDocumentBtn_clicked()
 {
+    // inits
+    int result;
+
     // generate the document and save it
-    dataHandler->GenerateDocument(dataHandler->getOutputFilename());
+    result = dataHandler->GenerateDocument(dataHandler->getOutputFilename());
 
     // reset
     ui->confirmDataChbx->setChecked(false);
-}
 
-
-/**
- * @brief MainWindow::on_clearAllBtn_clicked
- */
-void MainWindow::on_clearAllBtn_clicked()
-{
-    // clear all fields
-    ui->inputFileText->clear();
-    ui->outputFileText->clear();
-    ui->tableWidget->clear();
-
-    // clear data
-    dataHandler->setInputFilename("");
-    dataHandler->setOutputFilename("");
+    if (result == 0) {
+        QMessageBox::information(this, "Document Generation", "The document has been successfully generated!");
+    }
+    if (result != 0) {
+        QMessageBox::critical(this, "Document Generation", "The document generation failed!");
+    }
 }
 
 
