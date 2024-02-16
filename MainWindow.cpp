@@ -229,7 +229,7 @@ void MainWindow::PopulateTable()
     ui->tableWidget->setItem(2, 0, new QTableWidgetItem("Date", QTableWidgetItem::Type));
     ui->tableWidget->setItem(3, 0, new QTableWidgetItem("Start Date", QTableWidgetItem::Type));
     ui->tableWidget->setItem(4, 0, new QTableWidgetItem("# Sections", QTableWidgetItem::Type));
-
+    // sections
     for (int i = 0; i < dataHandler->getEstimateData().numSections.toInt(); ++i) {
         if (i == 0) {
             ui->tableWidget->setItem(5, 0, new QTableWidgetItem("Title", QTableWidgetItem::Type));
@@ -256,7 +256,57 @@ void MainWindow::PopulateTable()
     }
 
     // input data into table
+    ui->tableWidget->setItem(0, 1, new QTableWidgetItem(dataHandler->getEstimateData().name, QTableWidgetItem::Type));
+    ui->tableWidget->setItem(1, 1, new QTableWidgetItem(dataHandler->getEstimateData().address, QTableWidgetItem::Type));
+    ui->tableWidget->setItem(2, 1, new QTableWidgetItem(dataHandler->getEstimateData().date, QTableWidgetItem::Type));
+    ui->tableWidget->setItem(3, 1, new QTableWidgetItem(dataHandler->getEstimateData().startDate, QTableWidgetItem::Type));
+    ui->tableWidget->setItem(4, 1, new QTableWidgetItem(dataHandler->getEstimateData().numSections, QTableWidgetItem::Type));
 
+    // sections
+    for (int i = 0; i < dataHandler->getEstimateData().numSections.toInt(); ++i) {
+        if (i == 0) {
+            ui->tableWidget->setItem(5, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).title, QTableWidgetItem::Type));
+            ui->tableWidget->setItem(6, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).billingPrice, QTableWidgetItem::Type));
+            ui->tableWidget->setItem(7, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).manHours, QTableWidgetItem::Type));
+            ui->tableWidget->setItem(8, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).numPeople, QTableWidgetItem::Type));
+            for (int j = 1; j < dataHandler->getEstimateData().sections.at(i).includedAreas.size(); ++j) {
+                ui->tableWidget->setItem(9, j, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).includedAreas.at(j), QTableWidgetItem::Type));
+            }
+            for (int j = 1; j < dataHandler->getEstimateData().sections.at(i).excludedAreas.size(); ++j) {
+                ui->tableWidget->setItem(10, j, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).excludedAreas.at(j), QTableWidgetItem::Type));
+            }
+            for (int j = 1; j < dataHandler->getEstimateData().sections.at(i).expectedSupplies.size(); ++j) {
+                ui->tableWidget->setItem(11, j, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).expectedSupplies.at(j), QTableWidgetItem::Type));
+            }
+
+            ui->tableWidget->setItem(12, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).expectedSuppliesCost, QTableWidgetItem::Type));
+
+            for (int j = 1; j < dataHandler->getEstimateData().sections.at(i).notes.size(); ++j) {
+                ui->tableWidget->setItem(13, j, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).notes.at(j), QTableWidgetItem::Type));
+            }
+        }
+        else {
+            ui->tableWidget->setItem(5 + 9*i, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).title, QTableWidgetItem::Type));
+            ui->tableWidget->setItem(6 + 9*i, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).billingPrice, QTableWidgetItem::Type));
+            ui->tableWidget->setItem(7 + 9*i, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).manHours, QTableWidgetItem::Type));
+            ui->tableWidget->setItem(8 + 9*i, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).numPeople, QTableWidgetItem::Type));
+            for (int j = 1; j < dataHandler->getEstimateData().sections.at(i).includedAreas.size(); ++j) {
+                ui->tableWidget->setItem(9 + 9*i, j, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).includedAreas.at(j), QTableWidgetItem::Type));
+            }
+            for (int j = 1; j < dataHandler->getEstimateData().sections.at(i).excludedAreas.size(); ++j) {
+                ui->tableWidget->setItem(10 + 9*i, j, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).excludedAreas.at(j), QTableWidgetItem::Type));
+            }
+            for (int j = 1; j < dataHandler->getEstimateData().sections.at(i).expectedSupplies.size(); ++j) {
+                ui->tableWidget->setItem(11 + 9*i, j, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).expectedSupplies.at(j), QTableWidgetItem::Type));
+            }
+
+            ui->tableWidget->setItem(12 + 9*i, 1, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).expectedSuppliesCost, QTableWidgetItem::Type));
+
+            for (int j = 1; j < dataHandler->getEstimateData().sections.at(i).notes.size(); ++j) {
+                ui->tableWidget->setItem(13 + 9*i, j, new QTableWidgetItem(dataHandler->getEstimateData().sections.at(i).notes.at(j), QTableWidgetItem::Type));
+            }
+        }
+    }
 }
 
 
@@ -268,7 +318,7 @@ void MainWindow::on_selectInputFileBtn_clicked()
     // inits
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::AnyFile);
-    // dialog.setNameFilter(tr("CSV (*.csv"));
+    dialog.setNameFilter(tr("*.csv"));
     dialog.setViewMode(QFileDialog::Detail);
     QString selectedFilename;
 
