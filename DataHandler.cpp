@@ -50,6 +50,15 @@ QStringList DataHandler::getData() {
 }
 
 
+/**
+ * @brief DataHandler::getEstimateData
+ * @return
+ */
+EstimateData DataHandler::getEstimateData() {
+    return estimateData;
+}
+
+
 // -------------------------------------------------- //
 //                      Setters
 // -------------------------------------------------- //
@@ -79,6 +88,15 @@ void DataHandler::setOutputFilename(QString name) {
  */
 void DataHandler::setData(QStringList newData) {
     data = newData;
+}
+
+
+/**
+ * @brief DataHandler::setEstimateData
+ * @param data
+ */
+void DataHandler::setEstimateData(EstimateData data) {
+    estimateData = data;
 }
 
 
@@ -126,21 +144,22 @@ int DataHandler::GenerateDocument(QString filename) {
     qDebug() << "new filename: " << documentName;
 
     // document content
-    QString html =
-        "<div align=right>"
-        "City, 11/11/2015"
-        "</div>"
-        "<div align=left>"
-        "Sender Name<br>"
-        "street 34/56A<br>"
-        "121-43 city"
-        "</div>"
-        "<h1 align=center>DOCUMENT TITLE</h1>"
-        "<p align=justify>"
+    QString html = "";
+
+    QString header = "<div align=right>PO Box 9311<br>South Burlington, VT<br>05407-9311</div>";
+    QString title = "<h1 align=center>Job Estimate</h1>";
+    QString date = "<div align=left><u>" + estimateData.date.toString("MM.dd.yyyy") + "</u></div><br>";
+    QString address = "<div align=left><u>" + estimateData.address + "</u></div><br>";
+    QString opener = "<div align=left>Hi " + estimateData.name + ",<br><strong>Thank you</strong> for patiently waiting for our estimate.</div><br>";
+    QString numSections = "<div align=left>We have broken this estimate down into " + QString::number(estimateData.numSections) + " sections.</div><br>";
+    QString content = "<p align=justify>"
         "document content document content document content document content document content document content document content document content document content document content "
         "document content document content document content document content document content document content document content document content document content document content "
         "</p>"
         "<div align=right>sincerly</div>";
+
+    // put it all together
+    html += header + title + date + address + opener + content;
 
     QTextDocument document;
     document.setHtml(html);
@@ -157,7 +176,6 @@ int DataHandler::GenerateDocument(QString filename) {
     // painter.drawImage(r, QImage(":/images/pwp-logo.png"));
 
     // date underlined
-
 
     // customer address underlined
 

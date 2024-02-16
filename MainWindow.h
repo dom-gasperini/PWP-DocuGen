@@ -37,6 +37,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    // functions
+    void PopulateTable();
+
 private:
     // ui
     Ui::MainWindow *ui;
@@ -56,8 +59,8 @@ private slots:
     void on_actionAbout_triggered();
     void on_actionDark_Mode_triggered(bool checked);
     void on_selectInputFileBtn_clicked();
-    void on_selectOutputFileBtn_clicked();
     void on_generateDocumentBtn_clicked();
     void on_processDataBtn_clicked();
+    void on_clearAllBtn_clicked();
 };
 #endif // MAINWINDOW_H

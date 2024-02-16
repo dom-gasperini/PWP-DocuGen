@@ -1087,7 +1087,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_assets.cpp
 qrc_assets.cpp: assets.qrc \
 		../../../Qt/6.6.1/gcc_64/libexec/rcc \
-		pwp-logo.png
+		pwp-logo.ico \
+		pwp-logo.png \
+		qt_logo.png
 	/home/dom/Qt/6.6.1/gcc_64/libexec/rcc -name assets --no-zstd assets.qrc -o qrc_assets.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

@@ -46,9 +46,9 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "on_actionDark_Mode_triggered",
     "checked",
     "on_selectInputFileBtn_clicked",
-    "on_selectOutputFileBtn_clicked",
     "on_generateDocumentBtn_clicked",
-    "on_processDataBtn_clicked"
+    "on_processDataBtn_clicked",
+    "on_clearAllBtn_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
@@ -61,8 +61,8 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata5[8];
     char stringdata6[30];
     char stringdata7[31];
-    char stringdata8[31];
-    char stringdata9[26];
+    char stringdata8[26];
+    char stringdata9[23];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -75,9 +75,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(51, 28),  // "on_actionDark_Mode_triggered"
         QT_MOC_LITERAL(80, 7),  // "checked"
         QT_MOC_LITERAL(88, 29),  // "on_selectInputFileBtn_clicked"
-        QT_MOC_LITERAL(118, 30),  // "on_selectOutputFileBtn_clicked"
-        QT_MOC_LITERAL(149, 30),  // "on_generateDocumentBtn_clicked"
-        QT_MOC_LITERAL(180, 25)   // "on_processDataBtn_clicked"
+        QT_MOC_LITERAL(118, 30),  // "on_generateDocumentBtn_clicked"
+        QT_MOC_LITERAL(149, 25),  // "on_processDataBtn_clicked"
+        QT_MOC_LITERAL(175, 22)   // "on_clearAllBtn_clicked"
     },
     "MainWindow",
     "UpdateDisplay",
@@ -86,9 +86,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "on_actionDark_Mode_triggered",
     "checked",
     "on_selectInputFileBtn_clicked",
-    "on_selectOutputFileBtn_clicked",
     "on_generateDocumentBtn_clicked",
-    "on_processDataBtn_clicked"
+    "on_processDataBtn_clicked",
+    "on_clearAllBtn_clicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -146,11 +146,11 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         // method 'on_selectInputFileBtn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_selectOutputFileBtn_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_generateDocumentBtn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_processDataBtn_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_clearAllBtn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -166,9 +166,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_actionAbout_triggered(); break;
         case 2: _t->on_actionDark_Mode_triggered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 3: _t->on_selectInputFileBtn_clicked(); break;
-        case 4: _t->on_selectOutputFileBtn_clicked(); break;
-        case 5: _t->on_generateDocumentBtn_clicked(); break;
-        case 6: _t->on_processDataBtn_clicked(); break;
+        case 4: _t->on_generateDocumentBtn_clicked(); break;
+        case 5: _t->on_processDataBtn_clicked(); break;
+        case 6: _t->on_clearAllBtn_clicked(); break;
         default: ;
         }
     }

@@ -23,8 +23,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     // setup UI
     ui->setupUi(this);
-    this->setWindowTitle("Cross Control Product Manager");
-    this->setWindowIcon(QIcon(":/images/cc-logo.ico"));
+    this->setWindowTitle("PWP DocuGen");
+    this->setWindowIcon(QIcon(":/images/pwp-logo.ico"));
     m_currentPalette = qApp->palette();
 
     // setup about dialog
@@ -59,8 +59,13 @@ void MainWindow::UpdateDisplay()
 
     dataHandler->setOutputFilename(ui->outputFileText->text());
 
-    // update data preview
-
+    // proces data button logic
+    if (ui->inputFileText->text() != "") {
+        ui->processDataBtn->setEnabled(true);
+    }
+    else {
+        ui->processDataBtn->setEnabled(false);
+    }
 
     // generate document logic
     if (ui->confirmDataChbx->isChecked() && ui->outputFileText->text() != "") {
@@ -69,6 +74,22 @@ void MainWindow::UpdateDisplay()
     else {
         ui->generateDocumentBtn->setEnabled(false);
     }
+}
+
+
+/**
+ * @brief MainWindow::PopulateTable
+ */
+void MainWindow::PopulateTable()
+{
+    // inits
+    ui->tableWidget->clear();
+
+
+    // do things
+    ui->tableWidget->insertRow(0);
+
+    ui->tableWidget->insertColumn(0);
 }
 
 
@@ -97,36 +118,15 @@ void MainWindow::on_selectInputFileBtn_clicked()
 
 
 /**
- * @brief MainWindow::on_selectOutputFileBtn_clicked
- */
-void MainWindow::on_selectOutputFileBtn_clicked()
-{
-    // inits
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::AnyFile);
-    // dialog.setNameFilter(tr("CSV (*.csv"));
-    dialog.setViewMode(QFileDialog::Detail);
-    QString selectedFilename;
-
-    // select file
-    if (dialog.exec()) {
-        selectedFilename = dialog.selectedFiles().at(0);
-    }
-
-    qDebug() << "output file: " << selectedFilename;
-
-    // save filename
-    dataHandler->setOutputFilename(selectedFilename);
-}
-
-
-/**
  * @brief MainWindow::on_processDataBtn_clicked
  */
 void MainWindow::on_processDataBtn_clicked()
 {
     // parse data from input file
     dataHandler->ProcessData(dataHandler->getInputFilename());
+
+    // populate the table
+    PopulateTable();
 }
 
 
@@ -140,6 +140,22 @@ void MainWindow::on_generateDocumentBtn_clicked()
 
     // reset
     ui->confirmDataChbx->setChecked(false);
+}
+
+
+/**
+ * @brief MainWindow::on_clearAllBtn_clicked
+ */
+void MainWindow::on_clearAllBtn_clicked()
+{
+    // clear all fields
+    ui->inputFileText->clear();
+    ui->outputFileText->clear();
+    ui->tableWidget->clear();
+
+    // clear data
+    dataHandler->setInputFilename("");
+    dataHandler->setOutputFilename("");
 }
 
 

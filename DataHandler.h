@@ -23,7 +23,20 @@
 #include <QPainter>
 #include <QtPrintSupport/QPrinter>
 
-// enumerations
+// typedefs
+typedef struct EstimateDataStruct {
+    QString name;
+    QString title;
+    QString address;
+    QDate date;
+    int numSections;
+    float manHours;
+    float numGallons;
+    float billingPrice;
+    float jobDeposit;
+    float donationAmount;
+    QString timeline;
+} EstimateData;
 
 
 /**
@@ -39,11 +52,13 @@ public:
     QString getInputFilename();
     QString getOutputFilename();
     QStringList getData();
+    EstimateData getEstimateData();
 
     // setters
     void setInputFilename(QString name);
     void setOutputFilename(QString name);
     void setData(QStringList data);
+    void setEstimateData(EstimateData data);
 
     // functions
     int ProcessData(QString filename);
@@ -54,6 +69,7 @@ private:
     QString inputFilename;
     QString outputFilename;
     QStringList data;
+    EstimateData estimateData;
 
     // document
     QTextDocument* textDocument;
