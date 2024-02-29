@@ -56,13 +56,20 @@ private:
     DataHandler* dataHandler;
     int numRows = 0;
     int numColumns = 0;
+    int currentSectionIndex = 1;
+    EstimateData tmpData;
+    EstimateSection tmpSection;
+    QVector<EstimateSection> tmpSections;
 
 private slots:
     void UpdateDisplay();
     void on_actionAbout_triggered();
     void on_actionDark_Mode_triggered(bool checked);
     void on_selectInputFileBtn_clicked();
-    void on_generateDocumentBtn_clicked();
+    void on_generateDocumentBtnImport_clicked();
     void on_processDataBtn_clicked();
+    void on_previousSectionBtn_clicked();
+    void on_nextSectionBtn_clicked();
+    void on_generateDocumentBtnInput_clicked();
 };
 #endif // MAINWINDOW_H

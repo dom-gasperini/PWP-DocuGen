@@ -27,11 +27,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->setWindowIcon(QIcon(":/images/pwp-logo.ico"));
     m_currentPalette = qApp->palette();
 
+    ui->tabWidget->setCurrentIndex(0);
+
     // setup about dialog
     m_aboutDialog = new AboutDlg();
 
     // setup data handler
     dataHandler = new DataHandler();
+
+    // do jank thing
+    for (int i = 0; i < 99; ++i) {
+        EstimateSection tmp;
+        tmpSections.append(tmp);
+    }
 
     // setup timers
     m_displayUpdateTimer = new QTimer(this);
@@ -54,25 +62,102 @@ MainWindow::~MainWindow()
  */
 void MainWindow::UpdateDisplay()
 {
-    // update filenames
-    ui->inputFileText->setText(dataHandler->getInputFilename());
+    if (ui->tabWidget->currentIndex() == 0) {
+        // handle UI
+        tmpData.name = ui->nameText->text();
+        tmpData.date = ui->currentDateText->text();
+        tmpData.startDate = ui->estStartDateText->text();
+        tmpData.address = ui->customerAddressText->text();
+        tmpData.numSections = ui->numSectionsSbx->text();
+        ui->currentSectionSbx->setValue(currentSectionIndex);
 
-    dataHandler->setOutputFilename(ui->outputFileText->text());
+        // section data
+        tmpSection.title = ui->titleText->text();
+        tmpSection.billingPrice = QString::number(ui->billingPriceSbx->value());
+        tmpSection.manHours = QString::number(ui->numManHoursSbx->value());
+        tmpSection.numPeople = QString::number(ui->numPaintersSbx->value());
+        tmpSection.expectedSuppliesCost = QString::number(ui->estSuppliesCostSbx->value());
 
-    // proces data button logic
-    if (ui->inputFileText->text() != "") {
-        ui->processDataBtn->setEnabled(true);
-    }
-    else {
-        ui->processDataBtn->setEnabled(false);
+        tmpSection.expectedSupplies.clear();
+        QStringList tmpExpSupplies = ui->expectedSuppliesText->toPlainText().split(",");
+        for (int i = 0; i < tmpExpSupplies.size(); ++i) {
+            tmpSection.expectedSupplies.append(tmpExpSupplies.at(i).trimmed());
+        }
+        tmpSection.includedAreas.clear();
+        QStringList tmpIncAreas = ui->includedAreasText->toPlainText().split(",");
+        for (int i = 0; i < tmpIncAreas.size(); ++i) {
+            tmpSection.includedAreas.append(tmpIncAreas.at(i).trimmed());
+        }
+        tmpSection.excludedAreas.clear();
+        QStringList tmpExAreas = ui->excludedAreasText->toPlainText().split(",");
+        for (int i = 0; i < tmpExAreas.size(); ++i) {
+            tmpSection.excludedAreas.append(tmpExAreas.at(i).trimmed());
+        }
+        tmpSection.notes.clear();
+        QStringList tmpNotes = ui->notesText->toPlainText().split(",");
+        for (int i = 0; i < tmpNotes.size(); ++i) {
+            tmpSection.notes.append(tmpNotes.at(i).trimmed());
+        }
+
+        // debugging
+        // for (int i = 0; i < tmpSection.includedAreas.size(); ++i)
+        //     qDebug() << "inc as: " << tmpSection.includedAreas.at(i);
+        // for (int i = 0; i < tmpSection.excludedAreas.size(); ++i)
+        //     qDebug() << "ex as: " << tmpSection.excludedAreas.at(i);
+        // for (int i = 0; i < tmpSection.notes.size(); ++i)
+        //     qDebug() << "notes: " << tmpSection.notes.at(i);
+        // qDebug() << "title: " << tmpSection.title;
+
+        // add to sections vector
+        tmpSections.replace(currentSectionIndex - 1, tmpSection);
+        // qDebug() << "repcld sec: " << tmpSections.at(currentSectionIndex - 1).title;
+
+        // update tmpData
+        tmpData.sections = tmpSections;
+        // qDebug() << "full replcd: " << tmpData.sections.at(0).title;
+
+        // update estimate data
+        dataHandler->setEstimateData(tmpData);
+
+        // handle file information
+        dataHandler->setOutputFilename(ui->outputFileTextInput->text());
+
+        // handle button logic
+        if (currentSectionIndex == 1) {
+            ui->previousSectionBtn->setEnabled(false);
+        }
+        else {
+            ui->previousSectionBtn->setEnabled(true);
+        }
+        if (currentSectionIndex == tmpData.numSections.toInt()) {
+            ui->nextSectionBtn->setEnabled(false);
+        }
+        else {
+            ui->nextSectionBtn->setEnabled(true);
+        }
     }
 
-    // generate document logic
-    if (ui->confirmDataChbx->isChecked() && ui->outputFileText->text() != "") {
-        ui->generateDocumentBtn->setEnabled(true);
-    }
-    else {
-        ui->generateDocumentBtn->setEnabled(false);
+    if (ui->tabWidget->currentIndex() == 1) {
+        // update filenamess
+        ui->inputFileText->setText(dataHandler->getInputFilename());
+
+        dataHandler->setOutputFilename(ui->outputFileTextImport->text());
+
+        // proces data button logic
+        if (ui->inputFileText->text() != "") {
+            ui->processDataBtn->setEnabled(true);
+        }
+        else {
+            ui->processDataBtn->setEnabled(false);
+        }
+
+        // generate document logic
+        if (ui->confirmDataChbx->isChecked() && ui->outputFileTextImport->text() != "") {
+            ui->generateDocumentBtnImport->setEnabled(true);
+        }
+        else {
+            ui->generateDocumentBtnImport->setEnabled(false);
+        }
     }
 }
 
@@ -348,9 +433,9 @@ void MainWindow::on_processDataBtn_clicked()
 
 
 /**
- * @brief MainWindow::on_generateDocumentBtn_clicked
+ * @brief MainWindow::on_generateDocumentBtnInput_clicked
  */
-void MainWindow::on_generateDocumentBtn_clicked()
+void MainWindow::on_generateDocumentBtnInput_clicked()
 {
     // inits
     int result;
@@ -367,6 +452,47 @@ void MainWindow::on_generateDocumentBtn_clicked()
     if (result != 0) {
         QMessageBox::critical(this, "Document Generation", "The document generation failed!");
     }
+}
+
+
+/**
+ * @brief MainWindow::on_generateDocumentBtn_clicked
+ */
+void MainWindow::on_generateDocumentBtnImport_clicked()
+{
+    // inits
+    int result;
+
+    // generate the document and save it
+    result = dataHandler->GenerateDocument(dataHandler->getOutputFilename());
+
+    // reset
+    ui->confirmDataChbx->setChecked(false);
+
+    if (result == 0) {
+        QMessageBox::information(this, "Document Generation", "The document has been successfully generated!");
+    }
+    if (result != 0) {
+        QMessageBox::critical(this, "Document Generation", "The document generation failed!");
+    }
+}
+
+
+/**
+ * @brief MainWindow::on_previousSectionBtn_clicked
+ */
+void MainWindow::on_previousSectionBtn_clicked()
+{
+    currentSectionIndex--;
+}
+
+
+/**
+ * @brief MainWindow::on_nextSectionBtn_clicked
+ */
+void MainWindow::on_nextSectionBtn_clicked()
+{
+    currentSectionIndex++;
 }
 
 

@@ -29,8 +29,6 @@ typedef struct EstimateSectionStruct {
     QString manHours;
     QString numPeople;
     QString billingPrice;
-    QString jobDeposit;
-    QString timeline;
     QString expectedSuppliesCost;
     QVector<QString> includedAreas;
     QVector<QString> excludedAreas;

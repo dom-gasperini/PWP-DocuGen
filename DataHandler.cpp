@@ -172,9 +172,21 @@ int DataHandler::GenerateDocument(QString filename) {
     for (int i = 0; i < estimateData.numSections.toInt(); ++i) {
         QString sectionTitle = "<h3>" + estimateData.sections.at(i).title + "</h3>";
 
-        QString start = "<div>After going over measurements and calculating costs, this job comes out to <strong>$" + estimateData.sections.at(i).billingPrice + " with supplies included.</strong></div> <br>";
+        QString start = "<div>After going over measurements and calculating costs, this job comes out to <strong>$" + estimateData.sections.at(i).billingPrice + " with supplies included.</strong></div>";
 
         QString duration = "<div>This job will take " + estimateData.sections.at(i).manHours + " days to complete with <strong>an average of " + estimateData.sections.at(i).numPeople + " painters per day on site.</strong></div> <br>";
+
+        QString includedAreasList = "";
+        for (int j = 0; j < estimateData.sections.at(i).includedAreas.size(); ++j) {
+            includedAreasList += "<li>" + estimateData.sections.at(i).includedAreas.at(j) + "</li>";
+        }
+        QString includedAreas = "<div><strong>Areas Included in this Estimate:</strong> <ul>" + includedAreasList + "</ul></div>";
+
+        QString excludedAreasList = "";
+        for (int j = 0; j < estimateData.sections.at(i).excludedAreas.size(); ++j) {
+            excludedAreasList += "<li>" + estimateData.sections.at(i).excludedAreas.at(j) + "</li>";
+        }
+        QString excludedAreas = "<div><strong>Areas Excluded in this Estimate:</strong> <ul>" + excludedAreasList + "</ul></div>";
 
         QString servicesList = "<li>Floor Protection </li>"
                                "<li>Wall Hung Items Deinstallation (outlet covers, switch plates, etc.) </li>"
@@ -207,7 +219,7 @@ int DataHandler::GenerateDocument(QString filename) {
         QString notes = "<div><strong>Specific Notes about this Section:</strong> <ul>" + notesList + "</ul> </div>";
 
         // add it all together
-        sectionAll += sectionTitle + start + duration + services + supplies + suppliesCost + notes;
+        sectionAll += sectionTitle + start + duration + services + includedAreas + excludedAreas + supplies + suppliesCost + notes;
     }
 
     // notes for all four sections
