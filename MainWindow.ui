@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>675</width>
+    <width>700</width>
     <height>850</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>675</width>
+    <width>700</width>
     <height>850</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>675</width>
+    <width>700</width>
     <height>850</height>
    </size>
   </property>
@@ -31,7 +31,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>651</width>
+      <width>681</width>
       <height>791</height>
      </rect>
     </property>
@@ -47,19 +47,19 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>631</width>
+        <width>661</width>
         <height>181</height>
        </rect>
       </property>
       <property name="title">
        <string>General Information</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>611</width>
+         <width>641</width>
          <height>141</height>
         </rect>
        </property>
@@ -112,7 +112,7 @@
        <rect>
         <x>10</x>
         <y>200</y>
-        <width>631</width>
+        <width>661</width>
         <height>431</height>
        </rect>
       </property>
@@ -132,143 +132,22 @@
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>120</y>
-         <width>611</width>
+         <width>641</width>
          <height>71</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="1" column="4">
-         <widget class="QLabel" name="estSuppliesCostLbl">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Est Supplies $:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="5">
-         <widget class="QDoubleSpinBox" name="estSuppliesCostSbx">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximum">
-           <double>999999.000000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="7">
-         <widget class="QLabel" name="numPaintersLbl">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string># Painters:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" colspan="2">
-         <widget class="QDoubleSpinBox" name="billingPriceSbx">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximum">
-           <double>999999.000000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="8">
-         <widget class="QDoubleSpinBox" name="numManHoursSbx">
-          <property name="maximum">
-           <double>9999.000000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="6">
-         <spacer name="horizontalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Minimum</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="titleLbl">
           <property name="text">
            <string>Title:</string>
           </property>
          </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="billingPriceLbl">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Billing Price:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="7">
-         <widget class="QLabel" name="numManHoursLbl">
-          <property name="text">
-           <string># Man Hours:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="8">
-         <widget class="QSpinBox" name="numPaintersSbx">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <spacer name="horizontalSpacer_9">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Minimum</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item row="0" column="1" colspan="4">
          <widget class="QLineEdit" name="titleText">
@@ -286,8 +165,133 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="5">
-         <spacer name="horizontalSpacer_10">
+        <item row="0" column="8">
+         <widget class="QDoubleSpinBox" name="numManHoursSbx">
+          <property name="maximum">
+           <double>9999.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="7">
+         <widget class="QLabel" name="numPaintersLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>85</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string># Painters:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="billingPriceLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>85</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>85</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Billing Price:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="5">
+         <widget class="QDoubleSpinBox" name="estSuppliesCostSbx">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximum">
+           <double>99999.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="8">
+         <widget class="QSpinBox" name="numPaintersSbx">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="7">
+         <widget class="QLabel" name="numManHoursLbl">
+          <property name="text">
+           <string># Man Hours:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" colspan="2">
+         <widget class="QDoubleSpinBox" name="billingPriceSbx">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximum">
+           <double>99999.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QLabel" name="estSuppliesCostLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Est Supplies $:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <spacer name="horizontalSpacer_4">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -296,13 +300,13 @@
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>40</width>
+            <width>20</width>
             <height>20</height>
            </size>
           </property>
          </spacer>
         </item>
-        <item row="0" column="6">
+        <item row="0" column="5" colspan="2">
          <spacer name="horizontalSpacer_11">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -318,15 +322,28 @@
           </property>
          </spacer>
         </item>
+        <item row="1" column="6">
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>200</y>
-         <width>611</width>
-         <height>221</height>
+         <width>641</width>
+         <height>300</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_5">
@@ -382,18 +399,18 @@
         <item row="0" column="1">
          <widget class="QTextEdit" name="expectedSuppliesText">
           <property name="placeholderText">
-           <string>Seperate supplied with a comma!</string>
+           <string>Seperate supplies with a comma!</string>
           </property>
          </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>611</width>
+         <width>641</width>
          <height>64</height>
         </rect>
        </property>
@@ -462,7 +479,7 @@
        <rect>
         <x>10</x>
         <y>640</y>
-        <width>631</width>
+        <width>661</width>
         <height>111</height>
        </rect>
       </property>
@@ -472,14 +489,14 @@
       <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>611</width>
-         <height>81</height>
+         <x>11</x>
+         <y>28</y>
+         <width>641</width>
+         <height>71</height>
         </rect>
        </property>
-       <layout class="QGridLayout" name="gridLayout_6">
-        <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
          <widget class="QLabel" name="outputFileLblInput">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -487,36 +504,32 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>125</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
            <string>Output Filename:</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <spacer name="horizontalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Minimum</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
+        <item>
+         <widget class="QLineEdit" name="outputFileTextInput">
+          <property name="minimumSize">
            <size>
-            <width>40</width>
-            <height>20</height>
+            <width>350</width>
+            <height>0</height>
            </size>
           </property>
-         </spacer>
-        </item>
-        <item row="0" column="2" colspan="2">
-         <widget class="QLineEdit" name="outputFileTextInput">
           <property name="readOnly">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <spacer name="horizontalSpacer_7">
+        <item>
+         <spacer name="horizontalSpacer_6">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -528,25 +541,18 @@
           </property>
          </spacer>
         </item>
-        <item row="1" column="1" colspan="2">
+        <item>
          <widget class="QPushButton" name="generateDocumentBtnInput">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Generate Document</string>
           </property>
          </widget>
-        </item>
-        <item row="1" column="3">
-         <spacer name="horizontalSpacer_8">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </widget>
@@ -561,7 +567,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>631</width>
+        <width>661</width>
         <height>201</height>
        </rect>
       </property>
@@ -573,7 +579,7 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>611</width>
+         <width>641</width>
          <height>161</height>
         </rect>
        </property>
@@ -648,7 +654,7 @@
        <rect>
         <x>10</x>
         <y>230</y>
-        <width>631</width>
+        <width>661</width>
         <height>451</height>
        </rect>
       </property>
@@ -660,7 +666,7 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>611</width>
+         <width>641</width>
          <height>331</height>
         </rect>
        </property>
@@ -670,7 +676,7 @@
         <rect>
          <x>10</x>
          <y>370</y>
-         <width>611</width>
+         <width>641</width>
          <height>71</height>
         </rect>
        </property>
@@ -733,7 +739,7 @@
      <widget class="QPushButton" name="generateDocumentBtnImport">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>170</x>
         <y>690</y>
         <width>331</width>
         <height>61</height>
@@ -751,7 +757,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>675</width>
+     <width>700</width>
      <height>23</height>
     </rect>
    </property>

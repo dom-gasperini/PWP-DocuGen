@@ -44,7 +44,7 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab;
     QGroupBox *groupBox_3;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QGridLayout *gridLayout_7;
     QLabel *nameLbl;
     QLineEdit *nameText;
@@ -56,23 +56,22 @@ public:
     QLineEdit *customerAddressText;
     QGroupBox *groupBox_4;
     QFrame *line;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QGridLayout *gridLayout_4;
-    QLabel *estSuppliesCostLbl;
-    QDoubleSpinBox *estSuppliesCostSbx;
-    QLabel *numPaintersLbl;
-    QDoubleSpinBox *billingPriceSbx;
-    QDoubleSpinBox *numManHoursSbx;
-    QSpacerItem *horizontalSpacer_5;
     QLabel *titleLbl;
-    QLabel *billingPriceLbl;
-    QLabel *numManHoursLbl;
-    QSpinBox *numPaintersSbx;
-    QSpacerItem *horizontalSpacer_9;
     QLineEdit *titleText;
-    QSpacerItem *horizontalSpacer_10;
+    QDoubleSpinBox *numManHoursSbx;
+    QLabel *numPaintersLbl;
+    QLabel *billingPriceLbl;
+    QDoubleSpinBox *estSuppliesCostSbx;
+    QSpinBox *numPaintersSbx;
+    QLabel *numManHoursLbl;
+    QDoubleSpinBox *billingPriceSbx;
+    QLabel *estSuppliesCostLbl;
+    QSpacerItem *horizontalSpacer_4;
     QSpacerItem *horizontalSpacer_11;
-    QWidget *widget2;
+    QSpacerItem *horizontalSpacer_5;
+    QWidget *layoutWidget2;
     QGridLayout *gridLayout_5;
     QTextEdit *excludedAreasText;
     QTextEdit *includedAreasText;
@@ -82,7 +81,7 @@ public:
     QLabel *excludedAreasLbl;
     QLabel *expectedSuppliesLbl;
     QTextEdit *expectedSuppliesText;
-    QWidget *widget3;
+    QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_2;
     QGridLayout *gridLayout_8;
     QLabel *numSectionsLbl;
@@ -93,17 +92,15 @@ public:
     QPushButton *nextSectionBtn;
     QPushButton *previousSectionBtn;
     QGroupBox *groupBox_5;
-    QWidget *widget4;
-    QGridLayout *gridLayout_6;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_3;
     QLabel *outputFileLblInput;
-    QSpacerItem *horizontalSpacer_6;
     QLineEdit *outputFileTextInput;
-    QSpacerItem *horizontalSpacer_7;
+    QSpacerItem *horizontalSpacer_6;
     QPushButton *generateDocumentBtnInput;
-    QSpacerItem *horizontalSpacer_8;
     QWidget *tab_2;
     QGroupBox *groupBox;
-    QWidget *layoutWidget;
+    QWidget *layoutWidget4;
     QGridLayout *gridLayout;
     QSpacerItem *horizontalSpacer;
     QPushButton *selectInputFileBtn;
@@ -115,7 +112,7 @@ public:
     QLabel *outputFileLbl;
     QGroupBox *groupBox_2;
     QTableWidget *tableWidget;
-    QWidget *layoutWidget1;
+    QWidget *layoutWidget5;
     QGridLayout *gridLayout_3;
     QPushButton *processDataBtn;
     QSpacerItem *horizontalSpacer_3;
@@ -130,9 +127,9 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(675, 850);
-        MainWindow->setMinimumSize(QSize(675, 850));
-        MainWindow->setMaximumSize(QSize(675, 850));
+        MainWindow->resize(700, 850);
+        MainWindow->setMinimumSize(QSize(700, 850));
+        MainWindow->setMaximumSize(QSize(700, 850));
         actionDark_Mode = new QAction(MainWindow);
         actionDark_Mode->setObjectName("actionDark_Mode");
         actionDark_Mode->setCheckable(true);
@@ -142,236 +139,244 @@ public:
         centralwidget->setObjectName("centralwidget");
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName("tabWidget");
-        tabWidget->setGeometry(QRect(10, 10, 651, 791));
+        tabWidget->setGeometry(QRect(10, 10, 681, 791));
         tab = new QWidget();
         tab->setObjectName("tab");
         groupBox_3 = new QGroupBox(tab);
         groupBox_3->setObjectName("groupBox_3");
-        groupBox_3->setGeometry(QRect(10, 10, 631, 181));
-        widget = new QWidget(groupBox_3);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(10, 30, 611, 141));
-        gridLayout_7 = new QGridLayout(widget);
+        groupBox_3->setGeometry(QRect(10, 10, 661, 181));
+        layoutWidget = new QWidget(groupBox_3);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(10, 30, 641, 141));
+        gridLayout_7 = new QGridLayout(layoutWidget);
         gridLayout_7->setObjectName("gridLayout_7");
         gridLayout_7->setContentsMargins(0, 0, 0, 0);
-        nameLbl = new QLabel(widget);
+        nameLbl = new QLabel(layoutWidget);
         nameLbl->setObjectName("nameLbl");
 
         gridLayout_7->addWidget(nameLbl, 0, 0, 1, 1);
 
-        nameText = new QLineEdit(widget);
+        nameText = new QLineEdit(layoutWidget);
         nameText->setObjectName("nameText");
 
         gridLayout_7->addWidget(nameText, 0, 1, 1, 1);
 
-        currentDateLbl = new QLabel(widget);
+        currentDateLbl = new QLabel(layoutWidget);
         currentDateLbl->setObjectName("currentDateLbl");
 
         gridLayout_7->addWidget(currentDateLbl, 1, 0, 1, 1);
 
-        currentDateText = new QLineEdit(widget);
+        currentDateText = new QLineEdit(layoutWidget);
         currentDateText->setObjectName("currentDateText");
 
         gridLayout_7->addWidget(currentDateText, 1, 1, 1, 1);
 
-        estStartDateLbl = new QLabel(widget);
+        estStartDateLbl = new QLabel(layoutWidget);
         estStartDateLbl->setObjectName("estStartDateLbl");
 
         gridLayout_7->addWidget(estStartDateLbl, 2, 0, 1, 1);
 
-        estStartDateText = new QLineEdit(widget);
+        estStartDateText = new QLineEdit(layoutWidget);
         estStartDateText->setObjectName("estStartDateText");
 
         gridLayout_7->addWidget(estStartDateText, 2, 1, 1, 1);
 
-        customerAddressLbl = new QLabel(widget);
+        customerAddressLbl = new QLabel(layoutWidget);
         customerAddressLbl->setObjectName("customerAddressLbl");
 
         gridLayout_7->addWidget(customerAddressLbl, 3, 0, 1, 1);
 
-        customerAddressText = new QLineEdit(widget);
+        customerAddressText = new QLineEdit(layoutWidget);
         customerAddressText->setObjectName("customerAddressText");
 
         gridLayout_7->addWidget(customerAddressText, 3, 1, 1, 1);
 
         groupBox_4 = new QGroupBox(tab);
         groupBox_4->setObjectName("groupBox_4");
-        groupBox_4->setGeometry(QRect(10, 200, 631, 431));
+        groupBox_4->setGeometry(QRect(10, 200, 661, 431));
         line = new QFrame(groupBox_4);
         line->setObjectName("line");
         line->setGeometry(QRect(10, 100, 611, 20));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
-        widget1 = new QWidget(groupBox_4);
-        widget1->setObjectName("widget1");
-        widget1->setGeometry(QRect(10, 120, 611, 71));
-        gridLayout_4 = new QGridLayout(widget1);
+        layoutWidget1 = new QWidget(groupBox_4);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(10, 120, 641, 71));
+        gridLayout_4 = new QGridLayout(layoutWidget1);
         gridLayout_4->setObjectName("gridLayout_4");
         gridLayout_4->setContentsMargins(0, 0, 0, 0);
-        estSuppliesCostLbl = new QLabel(widget1);
-        estSuppliesCostLbl->setObjectName("estSuppliesCostLbl");
-        QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+        titleLbl = new QLabel(layoutWidget1);
+        titleLbl->setObjectName("titleLbl");
+
+        gridLayout_4->addWidget(titleLbl, 0, 0, 1, 1);
+
+        titleText = new QLineEdit(layoutWidget1);
+        titleText->setObjectName("titleText");
+        QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(estSuppliesCostLbl->sizePolicy().hasHeightForWidth());
-        estSuppliesCostLbl->setSizePolicy(sizePolicy);
+        sizePolicy.setHeightForWidth(titleText->sizePolicy().hasHeightForWidth());
+        titleText->setSizePolicy(sizePolicy);
+        titleText->setMinimumSize(QSize(250, 0));
 
-        gridLayout_4->addWidget(estSuppliesCostLbl, 1, 4, 1, 1);
+        gridLayout_4->addWidget(titleText, 0, 1, 1, 4);
 
-        estSuppliesCostSbx = new QDoubleSpinBox(widget1);
-        estSuppliesCostSbx->setObjectName("estSuppliesCostSbx");
-        QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(estSuppliesCostSbx->sizePolicy().hasHeightForWidth());
-        estSuppliesCostSbx->setSizePolicy(sizePolicy1);
-        estSuppliesCostSbx->setMaximum(999999.000000000000000);
-
-        gridLayout_4->addWidget(estSuppliesCostSbx, 1, 5, 1, 1);
-
-        numPaintersLbl = new QLabel(widget1);
-        numPaintersLbl->setObjectName("numPaintersLbl");
-        sizePolicy.setHeightForWidth(numPaintersLbl->sizePolicy().hasHeightForWidth());
-        numPaintersLbl->setSizePolicy(sizePolicy);
-
-        gridLayout_4->addWidget(numPaintersLbl, 1, 7, 1, 1);
-
-        billingPriceSbx = new QDoubleSpinBox(widget1);
-        billingPriceSbx->setObjectName("billingPriceSbx");
-        sizePolicy1.setHeightForWidth(billingPriceSbx->sizePolicy().hasHeightForWidth());
-        billingPriceSbx->setSizePolicy(sizePolicy1);
-        billingPriceSbx->setMaximum(999999.000000000000000);
-
-        gridLayout_4->addWidget(billingPriceSbx, 1, 1, 1, 2);
-
-        numManHoursSbx = new QDoubleSpinBox(widget1);
+        numManHoursSbx = new QDoubleSpinBox(layoutWidget1);
         numManHoursSbx->setObjectName("numManHoursSbx");
         numManHoursSbx->setMaximum(9999.000000000000000);
 
         gridLayout_4->addWidget(numManHoursSbx, 0, 8, 1, 1);
 
-        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+        numPaintersLbl = new QLabel(layoutWidget1);
+        numPaintersLbl->setObjectName("numPaintersLbl");
+        QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(numPaintersLbl->sizePolicy().hasHeightForWidth());
+        numPaintersLbl->setSizePolicy(sizePolicy1);
+        numPaintersLbl->setMinimumSize(QSize(80, 0));
+        numPaintersLbl->setMaximumSize(QSize(85, 16777215));
 
-        gridLayout_4->addItem(horizontalSpacer_5, 1, 6, 1, 1);
+        gridLayout_4->addWidget(numPaintersLbl, 1, 7, 1, 1);
 
-        titleLbl = new QLabel(widget1);
-        titleLbl->setObjectName("titleLbl");
-
-        gridLayout_4->addWidget(titleLbl, 0, 0, 1, 1);
-
-        billingPriceLbl = new QLabel(widget1);
+        billingPriceLbl = new QLabel(layoutWidget1);
         billingPriceLbl->setObjectName("billingPriceLbl");
-        sizePolicy.setHeightForWidth(billingPriceLbl->sizePolicy().hasHeightForWidth());
-        billingPriceLbl->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(billingPriceLbl->sizePolicy().hasHeightForWidth());
+        billingPriceLbl->setSizePolicy(sizePolicy2);
+        billingPriceLbl->setMinimumSize(QSize(85, 0));
+        billingPriceLbl->setMaximumSize(QSize(85, 16777215));
 
         gridLayout_4->addWidget(billingPriceLbl, 1, 0, 1, 1);
 
-        numManHoursLbl = new QLabel(widget1);
+        estSuppliesCostSbx = new QDoubleSpinBox(layoutWidget1);
+        estSuppliesCostSbx->setObjectName("estSuppliesCostSbx");
+        QSizePolicy sizePolicy3(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(estSuppliesCostSbx->sizePolicy().hasHeightForWidth());
+        estSuppliesCostSbx->setSizePolicy(sizePolicy3);
+        estSuppliesCostSbx->setMaximum(99999.000000000000000);
+
+        gridLayout_4->addWidget(estSuppliesCostSbx, 1, 5, 1, 1);
+
+        numPaintersSbx = new QSpinBox(layoutWidget1);
+        numPaintersSbx->setObjectName("numPaintersSbx");
+        sizePolicy3.setHeightForWidth(numPaintersSbx->sizePolicy().hasHeightForWidth());
+        numPaintersSbx->setSizePolicy(sizePolicy3);
+
+        gridLayout_4->addWidget(numPaintersSbx, 1, 8, 1, 1);
+
+        numManHoursLbl = new QLabel(layoutWidget1);
         numManHoursLbl->setObjectName("numManHoursLbl");
 
         gridLayout_4->addWidget(numManHoursLbl, 0, 7, 1, 1);
 
-        numPaintersSbx = new QSpinBox(widget1);
-        numPaintersSbx->setObjectName("numPaintersSbx");
-        sizePolicy1.setHeightForWidth(numPaintersSbx->sizePolicy().hasHeightForWidth());
-        numPaintersSbx->setSizePolicy(sizePolicy1);
+        billingPriceSbx = new QDoubleSpinBox(layoutWidget1);
+        billingPriceSbx->setObjectName("billingPriceSbx");
+        QSizePolicy sizePolicy4(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(billingPriceSbx->sizePolicy().hasHeightForWidth());
+        billingPriceSbx->setSizePolicy(sizePolicy4);
+        billingPriceSbx->setMaximum(99999.000000000000000);
 
-        gridLayout_4->addWidget(numPaintersSbx, 1, 8, 1, 1);
+        gridLayout_4->addWidget(billingPriceSbx, 1, 1, 1, 2);
 
-        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+        estSuppliesCostLbl = new QLabel(layoutWidget1);
+        estSuppliesCostLbl->setObjectName("estSuppliesCostLbl");
+        sizePolicy2.setHeightForWidth(estSuppliesCostLbl->sizePolicy().hasHeightForWidth());
+        estSuppliesCostLbl->setSizePolicy(sizePolicy2);
+        estSuppliesCostLbl->setMinimumSize(QSize(100, 0));
+        estSuppliesCostLbl->setMaximumSize(QSize(100, 16777215));
 
-        gridLayout_4->addItem(horizontalSpacer_9, 1, 3, 1, 1);
+        gridLayout_4->addWidget(estSuppliesCostLbl, 1, 4, 1, 1);
 
-        titleText = new QLineEdit(widget1);
-        titleText->setObjectName("titleText");
-        QSizePolicy sizePolicy2(QSizePolicy::Maximum, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(titleText->sizePolicy().hasHeightForWidth());
-        titleText->setSizePolicy(sizePolicy2);
-        titleText->setMinimumSize(QSize(250, 0));
+        horizontalSpacer_4 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
-        gridLayout_4->addWidget(titleText, 0, 1, 1, 4);
-
-        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
-
-        gridLayout_4->addItem(horizontalSpacer_10, 0, 5, 1, 1);
+        gridLayout_4->addItem(horizontalSpacer_4, 1, 3, 1, 1);
 
         horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
-        gridLayout_4->addItem(horizontalSpacer_11, 0, 6, 1, 1);
+        gridLayout_4->addItem(horizontalSpacer_11, 0, 5, 1, 2);
 
-        widget2 = new QWidget(groupBox_4);
-        widget2->setObjectName("widget2");
-        widget2->setGeometry(QRect(10, 200, 611, 221));
-        gridLayout_5 = new QGridLayout(widget2);
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer_5, 1, 6, 1, 1);
+
+        layoutWidget2 = new QWidget(groupBox_4);
+        layoutWidget2->setObjectName("layoutWidget2");
+        layoutWidget2->setGeometry(QRect(10, 200, 641, 300));
+        gridLayout_5 = new QGridLayout(layoutWidget2);
         gridLayout_5->setObjectName("gridLayout_5");
         gridLayout_5->setContentsMargins(0, 0, 0, 0);
-        excludedAreasText = new QTextEdit(widget2);
+        excludedAreasText = new QTextEdit(layoutWidget2);
         excludedAreasText->setObjectName("excludedAreasText");
 
         gridLayout_5->addWidget(excludedAreasText, 2, 1, 1, 1);
 
-        includedAreasText = new QTextEdit(widget2);
+        includedAreasText = new QTextEdit(layoutWidget2);
         includedAreasText->setObjectName("includedAreasText");
 
         gridLayout_5->addWidget(includedAreasText, 1, 1, 1, 1);
 
-        notesLbl = new QLabel(widget2);
+        notesLbl = new QLabel(layoutWidget2);
         notesLbl->setObjectName("notesLbl");
 
         gridLayout_5->addWidget(notesLbl, 3, 0, 1, 1);
 
-        includedAreasLbl = new QLabel(widget2);
+        includedAreasLbl = new QLabel(layoutWidget2);
         includedAreasLbl->setObjectName("includedAreasLbl");
 
         gridLayout_5->addWidget(includedAreasLbl, 1, 0, 1, 1);
 
-        notesText = new QTextEdit(widget2);
+        notesText = new QTextEdit(layoutWidget2);
         notesText->setObjectName("notesText");
 
         gridLayout_5->addWidget(notesText, 3, 1, 1, 1);
 
-        excludedAreasLbl = new QLabel(widget2);
+        excludedAreasLbl = new QLabel(layoutWidget2);
         excludedAreasLbl->setObjectName("excludedAreasLbl");
 
         gridLayout_5->addWidget(excludedAreasLbl, 2, 0, 1, 1);
 
-        expectedSuppliesLbl = new QLabel(widget2);
+        expectedSuppliesLbl = new QLabel(layoutWidget2);
         expectedSuppliesLbl->setObjectName("expectedSuppliesLbl");
 
         gridLayout_5->addWidget(expectedSuppliesLbl, 0, 0, 1, 1);
 
-        expectedSuppliesText = new QTextEdit(widget2);
+        expectedSuppliesText = new QTextEdit(layoutWidget2);
         expectedSuppliesText->setObjectName("expectedSuppliesText");
 
         gridLayout_5->addWidget(expectedSuppliesText, 0, 1, 1, 1);
 
-        widget3 = new QWidget(groupBox_4);
-        widget3->setObjectName("widget3");
-        widget3->setGeometry(QRect(10, 30, 611, 64));
-        horizontalLayout_2 = new QHBoxLayout(widget3);
+        layoutWidget3 = new QWidget(groupBox_4);
+        layoutWidget3->setObjectName("layoutWidget3");
+        layoutWidget3->setGeometry(QRect(10, 30, 641, 64));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         gridLayout_8 = new QGridLayout();
         gridLayout_8->setObjectName("gridLayout_8");
-        numSectionsLbl = new QLabel(widget3);
+        numSectionsLbl = new QLabel(layoutWidget3);
         numSectionsLbl->setObjectName("numSectionsLbl");
 
         gridLayout_8->addWidget(numSectionsLbl, 0, 0, 1, 1);
 
-        numSectionsSbx = new QSpinBox(widget3);
+        numSectionsSbx = new QSpinBox(layoutWidget3);
         numSectionsSbx->setObjectName("numSectionsSbx");
         numSectionsSbx->setMinimum(1);
 
         gridLayout_8->addWidget(numSectionsSbx, 0, 1, 1, 1);
 
-        currentSectionLbl = new QLabel(widget3);
+        currentSectionLbl = new QLabel(layoutWidget3);
         currentSectionLbl->setObjectName("currentSectionLbl");
 
         gridLayout_8->addWidget(currentSectionLbl, 1, 0, 1, 1);
 
-        currentSectionSbx = new QSpinBox(widget3);
+        currentSectionSbx = new QSpinBox(layoutWidget3);
         currentSectionSbx->setObjectName("currentSectionSbx");
         currentSectionSbx->setReadOnly(true);
         currentSectionSbx->setButtonSymbols(QAbstractSpinBox::NoButtons);
@@ -384,12 +389,12 @@ public:
 
         gridLayout_9 = new QGridLayout();
         gridLayout_9->setObjectName("gridLayout_9");
-        nextSectionBtn = new QPushButton(widget3);
+        nextSectionBtn = new QPushButton(layoutWidget3);
         nextSectionBtn->setObjectName("nextSectionBtn");
 
         gridLayout_9->addWidget(nextSectionBtn, 0, 1, 1, 1);
 
-        previousSectionBtn = new QPushButton(widget3);
+        previousSectionBtn = new QPushButton(layoutWidget3);
         previousSectionBtn->setObjectName("previousSectionBtn");
 
         gridLayout_9->addWidget(previousSectionBtn, 0, 0, 1, 1);
@@ -399,80 +404,73 @@ public:
 
         groupBox_5 = new QGroupBox(tab);
         groupBox_5->setObjectName("groupBox_5");
-        groupBox_5->setGeometry(QRect(10, 640, 631, 111));
-        widget4 = new QWidget(groupBox_5);
-        widget4->setObjectName("widget4");
-        widget4->setGeometry(QRect(10, 30, 611, 81));
-        gridLayout_6 = new QGridLayout(widget4);
-        gridLayout_6->setObjectName("gridLayout_6");
-        gridLayout_6->setContentsMargins(0, 0, 0, 0);
-        outputFileLblInput = new QLabel(widget4);
+        groupBox_5->setGeometry(QRect(10, 640, 661, 111));
+        widget = new QWidget(groupBox_5);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(11, 28, 641, 71));
+        horizontalLayout_3 = new QHBoxLayout(widget);
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        outputFileLblInput = new QLabel(widget);
         outputFileLblInput->setObjectName("outputFileLblInput");
-        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(outputFileLblInput->sizePolicy().hasHeightForWidth());
-        outputFileLblInput->setSizePolicy(sizePolicy3);
+        sizePolicy2.setHeightForWidth(outputFileLblInput->sizePolicy().hasHeightForWidth());
+        outputFileLblInput->setSizePolicy(sizePolicy2);
+        outputFileLblInput->setMaximumSize(QSize(125, 16777215));
 
-        gridLayout_6->addWidget(outputFileLblInput, 0, 0, 1, 1);
+        horizontalLayout_3->addWidget(outputFileLblInput);
 
-        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
-
-        gridLayout_6->addItem(horizontalSpacer_6, 0, 1, 1, 1);
-
-        outputFileTextInput = new QLineEdit(widget4);
+        outputFileTextInput = new QLineEdit(widget);
         outputFileTextInput->setObjectName("outputFileTextInput");
+        outputFileTextInput->setMinimumSize(QSize(350, 0));
         outputFileTextInput->setReadOnly(false);
 
-        gridLayout_6->addWidget(outputFileTextInput, 0, 2, 1, 2);
+        horizontalLayout_3->addWidget(outputFileTextInput);
 
-        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_6->addItem(horizontalSpacer_7, 1, 0, 1, 1);
+        horizontalLayout_3->addItem(horizontalSpacer_6);
 
-        generateDocumentBtnInput = new QPushButton(widget4);
+        generateDocumentBtnInput = new QPushButton(widget);
         generateDocumentBtnInput->setObjectName("generateDocumentBtnInput");
+        sizePolicy2.setHeightForWidth(generateDocumentBtnInput->sizePolicy().hasHeightForWidth());
+        generateDocumentBtnInput->setSizePolicy(sizePolicy2);
 
-        gridLayout_6->addWidget(generateDocumentBtnInput, 1, 1, 1, 2);
-
-        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_6->addItem(horizontalSpacer_8, 1, 3, 1, 1);
+        horizontalLayout_3->addWidget(generateDocumentBtnInput);
 
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName("tab_2");
         groupBox = new QGroupBox(tab_2);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(10, 10, 631, 201));
-        layoutWidget = new QWidget(groupBox);
-        layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(10, 30, 611, 161));
-        gridLayout = new QGridLayout(layoutWidget);
+        groupBox->setGeometry(QRect(10, 10, 661, 201));
+        layoutWidget4 = new QWidget(groupBox);
+        layoutWidget4->setObjectName("layoutWidget4");
+        layoutWidget4->setGeometry(QRect(10, 30, 641, 161));
+        gridLayout = new QGridLayout(layoutWidget4);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout->addItem(horizontalSpacer, 0, 0, 1, 1);
 
-        selectInputFileBtn = new QPushButton(layoutWidget);
+        selectInputFileBtn = new QPushButton(layoutWidget4);
         selectInputFileBtn->setObjectName("selectInputFileBtn");
-        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Maximum);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(selectInputFileBtn->sizePolicy().hasHeightForWidth());
-        selectInputFileBtn->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Maximum);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(selectInputFileBtn->sizePolicy().hasHeightForWidth());
+        selectInputFileBtn->setSizePolicy(sizePolicy5);
 
         gridLayout->addWidget(selectInputFileBtn, 0, 1, 1, 1);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        inputFileLbl = new QLabel(layoutWidget);
+        inputFileLbl = new QLabel(layoutWidget4);
         inputFileLbl->setObjectName("inputFileLbl");
 
         horizontalLayout->addWidget(inputFileLbl);
 
-        inputFileText = new QLineEdit(layoutWidget);
+        inputFileText = new QLineEdit(layoutWidget4);
         inputFileText->setObjectName("inputFileText");
         inputFileText->setReadOnly(true);
 
@@ -483,13 +481,13 @@ public:
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName("gridLayout_2");
-        outputFileTextImport = new QLineEdit(layoutWidget);
+        outputFileTextImport = new QLineEdit(layoutWidget4);
         outputFileTextImport->setObjectName("outputFileTextImport");
         outputFileTextImport->setReadOnly(false);
 
         gridLayout_2->addWidget(outputFileTextImport, 0, 1, 1, 1);
 
-        outputFileLbl = new QLabel(layoutWidget);
+        outputFileLbl = new QLabel(layoutWidget4);
         outputFileLbl->setObjectName("outputFileLbl");
 
         gridLayout_2->addWidget(outputFileLbl, 0, 0, 1, 1);
@@ -499,23 +497,23 @@ public:
 
         groupBox_2 = new QGroupBox(tab_2);
         groupBox_2->setObjectName("groupBox_2");
-        groupBox_2->setGeometry(QRect(10, 230, 631, 451));
+        groupBox_2->setGeometry(QRect(10, 230, 661, 451));
         tableWidget = new QTableWidget(groupBox_2);
         tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(10, 30, 611, 331));
-        layoutWidget1 = new QWidget(groupBox_2);
-        layoutWidget1->setObjectName("layoutWidget1");
-        layoutWidget1->setGeometry(QRect(10, 370, 611, 71));
-        gridLayout_3 = new QGridLayout(layoutWidget1);
+        tableWidget->setGeometry(QRect(10, 30, 641, 331));
+        layoutWidget5 = new QWidget(groupBox_2);
+        layoutWidget5->setObjectName("layoutWidget5");
+        layoutWidget5->setGeometry(QRect(10, 370, 641, 71));
+        gridLayout_3 = new QGridLayout(layoutWidget5);
         gridLayout_3->setObjectName("gridLayout_3");
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
-        processDataBtn = new QPushButton(layoutWidget1);
+        processDataBtn = new QPushButton(layoutWidget5);
         processDataBtn->setObjectName("processDataBtn");
-        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Expanding);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(processDataBtn->sizePolicy().hasHeightForWidth());
-        processDataBtn->setSizePolicy(sizePolicy5);
+        QSizePolicy sizePolicy6(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(processDataBtn->sizePolicy().hasHeightForWidth());
+        processDataBtn->setSizePolicy(sizePolicy6);
 
         gridLayout_3->addWidget(processDataBtn, 0, 1, 1, 1);
 
@@ -527,19 +525,19 @@ public:
 
         gridLayout_3->addItem(horizontalSpacer_2, 0, 0, 1, 1);
 
-        confirmDataChbx = new QCheckBox(layoutWidget1);
+        confirmDataChbx = new QCheckBox(layoutWidget5);
         confirmDataChbx->setObjectName("confirmDataChbx");
 
         gridLayout_3->addWidget(confirmDataChbx, 0, 3, 1, 1);
 
         generateDocumentBtnImport = new QPushButton(tab_2);
         generateDocumentBtnImport->setObjectName("generateDocumentBtnImport");
-        generateDocumentBtnImport->setGeometry(QRect(150, 690, 331, 61));
+        generateDocumentBtnImport->setGeometry(QRect(170, 690, 331, 61));
         tabWidget->addTab(tab_2, QString());
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 675, 23));
+        menubar->setGeometry(QRect(0, 0, 700, 23));
         menuOptions = new QMenu(menubar);
         menuOptions->setObjectName("menuOptions");
         MainWindow->setMenuBar(menubar);
@@ -571,11 +569,11 @@ public:
         estStartDateLbl->setText(QCoreApplication::translate("MainWindow", "Est. Start Date:", nullptr));
         customerAddressLbl->setText(QCoreApplication::translate("MainWindow", "Customer Address:", nullptr));
         groupBox_4->setTitle(QCoreApplication::translate("MainWindow", "Section Information", nullptr));
-        estSuppliesCostLbl->setText(QCoreApplication::translate("MainWindow", "Est Supplies $:", nullptr));
-        numPaintersLbl->setText(QCoreApplication::translate("MainWindow", "# Painters:", nullptr));
         titleLbl->setText(QCoreApplication::translate("MainWindow", "Title:", nullptr));
+        numPaintersLbl->setText(QCoreApplication::translate("MainWindow", "# Painters:", nullptr));
         billingPriceLbl->setText(QCoreApplication::translate("MainWindow", "Billing Price:", nullptr));
         numManHoursLbl->setText(QCoreApplication::translate("MainWindow", "# Man Hours:", nullptr));
+        estSuppliesCostLbl->setText(QCoreApplication::translate("MainWindow", "Est Supplies $:", nullptr));
         excludedAreasText->setPlaceholderText(QCoreApplication::translate("MainWindow", "Seperate areas with a comma!", nullptr));
         includedAreasText->setPlaceholderText(QCoreApplication::translate("MainWindow", "Seperate areas with a comma!", nullptr));
         notesLbl->setText(QCoreApplication::translate("MainWindow", "Notes:", nullptr));
@@ -583,7 +581,7 @@ public:
         notesText->setPlaceholderText(QCoreApplication::translate("MainWindow", "Seperate indiviual notes with a comma!", nullptr));
         excludedAreasLbl->setText(QCoreApplication::translate("MainWindow", "Excluded Areas:", nullptr));
         expectedSuppliesLbl->setText(QCoreApplication::translate("MainWindow", "Expected Supplies:", nullptr));
-        expectedSuppliesText->setPlaceholderText(QCoreApplication::translate("MainWindow", "Seperate supplied with a comma!", nullptr));
+        expectedSuppliesText->setPlaceholderText(QCoreApplication::translate("MainWindow", "Seperate supplies with a comma!", nullptr));
         numSectionsLbl->setText(QCoreApplication::translate("MainWindow", "# Sections:", nullptr));
         currentSectionLbl->setText(QCoreApplication::translate("MainWindow", "Current Section:", nullptr));
         nextSectionBtn->setText(QCoreApplication::translate("MainWindow", "Next Section", nullptr));
